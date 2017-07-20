@@ -1,0 +1,107 @@
+ul #categoria:hover  {
+	background: #1E88E5;
+	cursor:pointer; 
+	cursor: hand;
+}
+
+  .col-md-3 :hover {
+	background: #42A5F5;
+
+	
+}
+
+  #imgalimento{
+
+	  border-radius: 150px;
+  }
+
+ #lunes, #platosl, #martes, #platosm, #miercoles, #platosmier, #jueves, #platosj, #viernes, #platosv, #sabado, #platoss, #domingo, #platosd {
+
+	margin-bottom: 1px;
+
+}
+
+.btn-amber:hover {
+	 background: #1E88E5;
+
+ }
+
+.btn-danger:hover {
+	background: #1E88E5;
+	cursor: pointer;
+}
+
+#lblcalorias{
+	margin-left: 95px;
+	margin-bottom: 1px;
+	margin-top: 10px;
+	size: 30px;
+}
+.bigBox-fondo{
+
+	position:fixed;
+	top: 0px;
+	left: 0px;
+
+	width: 100%;
+	height: 100%;
+
+	background-color: black;
+	opacity: 0.4;
+
+}
+
+.bigBox-contenedor{
+	width: 250px;
+	height: 130px;
+
+
+	margin-left: 100px;
+	margin-top: 10px;
+	background-color: #BBDEFB;
+	position: relative;
+	opacity: 0.8;
+
+	border-radius: 22px 22px 22px 22px;
+	-moz-border-radius: 22px 22px 22px 22px;
+	-webkit-border-radius: 22px 22px 22px 22px;
+	border: 0px solid #000000;
+}
+
+.bigBox-Contenido span{
+
+	margin-top: 20px;
+	padding-top: 15px;
+
+}
+
+.bigBox-Boton{
+
+
+}
+
+#respuesta:hover {
+	cursor: pointer;
+	margin-top: 3px;
+	margin-bottom: 1px;
+
+}
+
+.bigBox-Entrada{
+	margin-bottom: 10px;
+}
+
+#capturapaciente{
+	text-align: center;
+}
+
+.respaciente{
+	font-weight: bold;
+}
+
+table{
+  
+  color:#000;
+  text-decoration:none;
+}
+
