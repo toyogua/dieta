@@ -19,6 +19,9 @@ var alimentos = {
     listos: []
 };
 
+var idselecciongr = 0;
+var nombrecombinacion = "";
+
 $(document).ready(function(){
 
     $("#salir").hide();
@@ -132,6 +135,8 @@ $(document).ready(function(){
     $("li.platosviernes").hide();
     $("li.platossabado").hide();
     $("li.platosdomingo").hide();
+
+    $("li.selplato").hide();
 
     $("#cargar_json").click(function(e){
 
@@ -254,6 +259,8 @@ $(document).ready(function(){
 
                     //cada alimento es agregado al ojbeto json
                     alimentos.listos.push({
+                        "idcombinacion" : idselecciongr,
+                        "nombrecombinacion" : nombrecombinacion,
                         "idalimento"    : id,
                         "idcategoria"   : idcategoria,
                         "idpaciente"    : actualpaciente,
@@ -273,6 +280,8 @@ $(document).ready(function(){
                     var tl = new TimelineMax(); //variabla para la animacion
 
                     // console.log(id);
+
+                 if (idselecciongr ==1 ){
 
                     if (idcategoria ==2 ) {
                         // $("#imgc5").attr('src', url);
@@ -320,6 +329,157 @@ $(document).ready(function(){
                     
                     swal("Alimento agregado", "Su alimento fue agregado al plato", "success");
                     console.log(imagen);
+                 } //fin del if (idselecciongr ==1 )
+
+                    if (idselecciongr ==2 ){
+
+                        if (idcategoria ==2 ) {
+                            // $("#imgc5").attr('src', url);
+                            // tl.from("#imgc5", 1.3, { x: "+=850px", ease: Bounce.easeOut })
+                            //     .from("#imgc5", 1, {opacity:0}, "-=1.3" );
+
+                            var cuenta= 0;
+
+                            $("#imgc5").append('<img  style="border-radius: 150px; height: 50px; width: 50px; margin-top: 60px; margin-left: 425px;"  class="img-fluid" alt="Dieta del Plato">').attr('src', url);
+
+
+
+                        }else
+                        if (idcategoria == 3){
+
+                            $("#imgc2").attr('src', url);
+                            tl.from("#imgc2", 1.3, { x: "+=850px", ease: Bounce.easeOut })
+                                .from("#imgc2", 1, {opacity:0}, "-=1.3" );
+
+                        }else
+                        if (idcategoria == 4){
+                            $("#imgc1").attr('src', url);
+                            tl.from("#imgc1", 1.3, { x: "+=850px", ease: Bounce.easeOut })
+                                .from("#imgc1", 1, {opacity:0}, "-=1.3" );
+                        }
+                        /*else
+                        if (idcategoria == 5){
+                            $("#imgc3").attr('src', url);
+                            tl.from("#imgc3", 1.3, { x: "+=850px", ease: Bounce.easeOut })
+                                .from("#imgc3", 1, {opacity:0}, "-=1.3" );
+                        }*/
+                        else
+                        if (idcategoria > 5){
+                            $("#imgc4").attr('src', url);
+                            tl.from("#imgc4", 1.3, { x: "+=850px", ease: Bounce.easeOut })
+                                .from("#imgc4", 1, {opacity:0}, "-=1.3" );
+                        }
+                        else
+                        if (idcategoria == 1){
+                            $("#imgc4").attr('src', url);
+                            tl.from("#imgc4", 1.3, { x: "+=850px", ease: Bounce.easeOut })
+                                .from("#imgc4", 1, {opacity:0}, "-=1.3" );
+                        }
+
+
+                        swal("Alimento agregado", "Su alimento fue agregado al plato", "success");
+                        console.log(imagen);
+                    } //fin del if (idselecciongr ==2 )
+
+                    if (idselecciongr ==3 ){
+
+                        if (idcategoria ==2 ) {
+                            // $("#imgc5").attr('src', url);
+                            // tl.from("#imgc5", 1.3, { x: "+=850px", ease: Bounce.easeOut })
+                            //     .from("#imgc5", 1, {opacity:0}, "-=1.3" );
+
+                            var cuenta= 0;
+
+                            $("#imgc5").append('<img  style="border-radius: 150px; height: 50px; width: 50px; margin-top: 60px; margin-left: 425px;"  class="img-fluid" alt="Dieta del Plato">').attr('src', url);
+
+
+
+                        }else
+                        if (idcategoria == 3){
+
+                            $("#imgc2").attr('src', url);
+                            tl.from("#imgc2", 1.3, { x: "+=850px", ease: Bounce.easeOut })
+                                .from("#imgc2", 1, {opacity:0}, "-=1.3" );
+
+                        }/*else
+                        if (idcategoria == 4){
+                            $("#imgc1").attr('src', url);
+                            tl.from("#imgc1", 1.3, { x: "+=850px", ease: Bounce.easeOut })
+                                .from("#imgc1", 1, {opacity:0}, "-=1.3" );
+                        }*/
+                        else
+                        if (idcategoria == 5){
+                            $("#imgc3").attr('src', url);
+                            tl.from("#imgc3", 1.3, { x: "+=850px", ease: Bounce.easeOut })
+                                .from("#imgc3", 1, {opacity:0}, "-=1.3" );
+                        }
+                        else
+                        if (idcategoria > 5){
+                            $("#imgc4").attr('src', url);
+                            tl.from("#imgc4", 1.3, { x: "+=850px", ease: Bounce.easeOut })
+                                .from("#imgc4", 1, {opacity:0}, "-=1.3" );
+                        }
+                        else
+                        if (idcategoria == 1){
+                            $("#imgc4").attr('src', url);
+                            tl.from("#imgc4", 1.3, { x: "+=850px", ease: Bounce.easeOut })
+                                .from("#imgc4", 1, {opacity:0}, "-=1.3" );
+                        }
+
+
+                        swal("Alimento agregado", "Su alimento fue agregado al plato", "success");
+                        console.log(imagen);
+                    } //fin del if (idselecciongr ==3 )
+
+                    if (idselecciongr ==4 ){
+
+                        if (idcategoria ==2 ) {
+                            // $("#imgc5").attr('src', url);
+                            // tl.from("#imgc5", 1.3, { x: "+=850px", ease: Bounce.easeOut })
+                            //     .from("#imgc5", 1, {opacity:0}, "-=1.3" );
+
+                            var cuenta= 0;
+
+                            $("#imgc5").append('<img  style="border-radius: 150px; height: 50px; width: 50px; margin-top: 60px; margin-left: 425px;"  class="img-fluid" alt="Dieta del Plato">').attr('src', url);
+
+
+
+                        }else
+                        if (idcategoria == 3){
+
+                            $("#imgc2").attr('src', url);
+                            tl.from("#imgc2", 1.3, { x: "+=850px", ease: Bounce.easeOut })
+                                .from("#imgc2", 1, {opacity:0}, "-=1.3" );
+
+                        }/*else
+                        if (idcategoria == 4){
+                            $("#imgc1").attr('src', url);
+                            tl.from("#imgc1", 1.3, { x: "+=850px", ease: Bounce.easeOut })
+                                .from("#imgc1", 1, {opacity:0}, "-=1.3" );
+                        }
+                        else
+                        if (idcategoria == 5){
+                            $("#imgc3").attr('src', url);
+                            tl.from("#imgc3", 1.3, { x: "+=850px", ease: Bounce.easeOut })
+                                .from("#imgc3", 1, {opacity:0}, "-=1.3" );
+                        }*/
+                        else
+                        if (idcategoria > 5){
+                            $("#imgc4").attr('src', url);
+                            tl.from("#imgc4", 1.3, { x: "+=850px", ease: Bounce.easeOut })
+                                .from("#imgc4", 1, {opacity:0}, "-=1.3" );
+                        }
+                        else
+                        if (idcategoria == 1){
+                            $("#imgc4").attr('src', url);
+                            tl.from("#imgc4", 1.3, { x: "+=850px", ease: Bounce.easeOut })
+                                .from("#imgc4", 1, {opacity:0}, "-=1.3" );
+                        }
+
+
+                        swal("Alimento agregado", "Su alimento fue agregado al plato", "success");
+                        console.log(imagen);
+                    } //fin del if (idselecciongr ==4 )
                 }
             });
 
@@ -1000,6 +1160,139 @@ $(document).ready(function(){
 
     });
 
+
+    //elegir platos
+    $(".btnselplato").click(function (e) {
+
+        e.preventDefault();
+        $("li.selplato").show();
+
+
+    });
+
+    //detectamos que tipo de plato tomamos
+    $(".btn-light-green").click(function () {
+
+        var idseleccion = $(this).data("id");
+        var combinacion = $(this).data("nombre");
+
+        idselecciongr = idseleccion;
+        nombrecombinacion = combinacion;
+
+        var url = "assets/img/plato.png";
+        var url2 = "assets/img/proteinasproteinas.png";
+        var url3 = "assets/img/verdurasverduras.png";
+        var url4 = "assets/img/verdurasverdurasproteinasproteinas.png";
+
+
+
+        if (idselecciongr == 1 ){
+            $("#fondoprincipal").attr('src', url);
+
+        }
+        if (idselecciongr == 2 ){
+            $("#fondoprincipal").attr('src', url2);
+
+        }
+
+        if (idselecciongr == 3 ){
+            $("#fondoprincipal").attr('src', url3);
+
+        }
+
+        if (idselecciongr == 4 ){
+            $("#fondoprincipal").attr('src', url4);
+
+        }
+
+
+        console.log(idseleccion);
+        console.log(combinacion);
+
+    });
+
+
+       
+        //DETECTAMOS TECLAS PRESIONADAS SOBRE EL INPUT DE BUSCAR ALIMENTO Y REALIZAMOS LA BUSQUEDA
+       $("#receta").focus();
+        //comprobamos si se pulsa una tecla
+        $("#receta").keyup(function(e){
+
+
+
+        var contenido3 = "";
+
+       
+        contenido3 +='<ul class="list-group" id="findrecetas"></ul>';
+       
+        $("#recetaencontrada").append(contenido3);
+
+            var consulta3;
+            //obtenemos el texto introducido en el campo de búsqueda
+            consulta3 = $("#receta").val();
+            //hace la búsqueda
+            if (consulta3 != "") {
+                $.post(baseurl+'paciente/buscaralimentoreceta', {alimento: consulta3}, function(mensaje) {
+                    if (mensaje!= '') {
+                        $("#findrecetas").show();
+                        $("#findrecetas").html(mensaje);
+                        console.log(mensaje);
+                    } else{
+                        $("#findrecetas").html('');
+                    };
+                });
+            }
+        });
+
+        $(".cargaralimento").live('click', function(e){
+            e.preventDefault();
+            var idalimento = $(this).data("id");
+            var nombrealimento = $(this).data("nombre");
+            var idreceta = $(this).data("receta");
+
+            //idactualpacientereporte = idpaciente;
+            //nombreactualpacientereporte = nombrepaciente;
+
+            
+            $("#receta").val(nombrealimento);
+            $("#findrecetas").remove();
+
+            $.ajax({
+            type: "POST",
+            url: baseurl+'paciente/getreceta',
+            dataType: 'json',
+            data: {idreceta: idreceta},
+            
+            success: function(res){console.log(res);
+                if (res) {
+
+                    
+                    //var resultadocalorias =0;
+
+                    
+       
+        $.each(res, function (j, val) {
+
+                        //var convertidas = parseInt(val.calorias);
+                        //resultadocalorias = resultadocalorias + convertidas;
+
+                        //$("table#"+diaseleccionado+idplatoseleccionado).append( '<tr class="list-group-item-info"><td>' + val.alimento + '</td><td>' + val.nombrecategoria + '</td><td>' + val.calorias + '</td></tr>' ); 
+                        
+                        
+                    });
+
+                //var texto= "Total calorias ";    //variable solo para imprimir
+                //var vacio = "";
+                //$("table#"+diaseleccionado+idplatoseleccionado).append( '<tr><td>'+ texto + '</td><td>' + resultadocalorias + '</td><td>' + vacio + '</td></tr>' ); 
+
+                }else{
+
+                    //swal("Ops", "Este plato no contiene alimentos", "error")
+                }
+            }
+        });
+            
+        });
 
 
 

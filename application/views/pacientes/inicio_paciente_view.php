@@ -8,6 +8,8 @@
 
             <div style="position:relative" id="fondoplato" ><ul  id="calorias"><label id="lblcalorias" class="btn btn-outline-secondary btn-rounded waves-effect btn-sm">Total calorias en este plato: </label>
                     <button class="btn btn-cyan btn-sm" id="identificarse">Identificarse</button>
+                    <input type="text" class="form-control input-sm" id="receta"></input>
+                    <ul id="recetaencontrada"></ul>
                     <button class="btn btn-danger btn-sm" id="salir">Salir</button>
                     <label class="btn btn-outline-success btn-rounded waves-effect btn-sm" id="bienvenidapaciente"></label></ul>
 
@@ -40,7 +42,7 @@
                     <img id="imgc5" style="border-radius: 150px; height: 50px; width: 50px; margin-top: 60px; margin-left: 425px;" src="assets/img/alimentos/mas.png" class="img-fluid" alt="Dieta del Plato">
                 </div>
 
-                <img src="assets/img/plato.png" class="img-fluid" alt="Dieta del Plato">
+                <img id="fondoprincipal"  src="assets/img/plato.png" class="img-fluid" alt="Dieta del Plato">
 
             </div>
         </div>
@@ -133,6 +135,18 @@
                 <li class="platosdomingo"><button class="platos platosdomingo btn btn-amber btn-sm" data-nombre="Refaccion 3"   data-id="6" id="plato6">Refaccion 3</button></li>
                 <li class="platosdomingo"><button class="platos platosdomingo btn btn-amber btn-sm" data-nombre="Refaccion 4"   data-id="7" id="plato7">Refaccion 4</button></li>
                 <li data-nombre="domingo" data-dia="platosdomingo" class="platosdomingo" id="finalizar"> <button data-dia="platosdomingo" class="platosdomingo btn btn-danger btn-sm" data-id="6" id="finalizar">Finalizar</button</li>
+
+
+
+            </ul>
+
+            <a href="" data-id="selplato" class="btnselplato btn btn-indigo btn-sm"  >Elegir plato</a>
+
+            <ul id="selplato">
+                <li class="selplato"><button class="selplato btn btn-light-green btn-sm" data-nombre="Normal"                                     data-id="1" id="plato1">Normal</button></li>
+                <li class="selplato"><button class="selplato btn btn-light-green btn-sm" data-nombre="Proteinas Proteinas"                        data-id="2" id="plato2">Proteinas Proteinas</button></li>
+                <li class="selplato"><button class="selplato btn btn-light-green btn-sm" data-nombre="Verduras Verduras"                          data-id="3" id="plato3">Verduras Verduras</button></li>
+                <li class="selplato"><button class="selplato btn btn-light-green btn-sm" data-nombre="Verduras Verduras Proteinas Proteinas"      data-id="4" id="plato4">Verduras Verduras Proteinas Proteinas</button></li>
 
 
 

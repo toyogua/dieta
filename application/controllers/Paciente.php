@@ -105,6 +105,8 @@ class Paciente extends CI_Controller
 
         foreach($listaalimentos as $alimento)
         {
+            echo $alimento->idcombinacion . ', ';
+            echo $alimento->nombrecombinacion . ', ';
             echo $alimento->idpaciente . ', ';
             echo $alimento->iddia . ', ';
             echo $alimento->idplato . ', ';
@@ -114,6 +116,8 @@ class Paciente extends CI_Controller
             echo '<br/>';
             $dataalimentos = array(
 
+                'idcombinacion'             =>  $alimento->idcombinacion,
+                'combinacion'             =>  $alimento->nombrecombinacion,
                 'paciente'             =>  $alimento->idpaciente,
                 'dia'             => $alimento->iddia,
                 'plato'             => $alimento->idplato,
@@ -124,6 +128,50 @@ class Paciente extends CI_Controller
             $this->Alimentos_model->insertardieta($dataalimentos);
         }
 
+
+    }
+
+    public function buscaralimentoreceta(){
+
+        $alimentoreceta = $this->input->post('alimento');
+
+        $data = $this->Alimentos_model->buscaralimentoreceta($alimentoreceta);
+
+        if($data !== FALSE)
+        {
+
+            foreach($data as $fila)
+            {
+                ?>
+
+                <li  id="respuesta" >
+
+                    <a class="resalimento cargaralimento"  data-receta="<?php echo $fila->idreceta ?>" data-id="<?php echo $fila->idalimento ?>" data-nombre="<?php echo $fila->nombrealimento ?>" ><?php echo $fila->nombrereceta ?></a>
+
+                </li>
+
+
+                <?php
+            }
+
+            //en otro caso decimos que no hay resultados
+        }else{
+            ?>
+
+            <p><?php echo 'No hay resultados' ?></p>
+
+            <?php
+        }
+
+    }
+
+    public function getreceta(){
+
+         $idreceta = $this->input->post('idreceta');
+
+         $data = $this->Alimentos_model->busquedareceta($idreceta);
+
+        echo json_encode($data);
 
     }
 

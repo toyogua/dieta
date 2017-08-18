@@ -97,6 +97,97 @@ class Alimentos_model extends CI_Model{
     {
         $this->db->insert('dietaplato', $data);
     }
+
+    public function buscaralimentoreceta($alimentoreceta){
+
+        //$this->db->like('Nombre', $alimentoreceta);
+        //$get_data = $this->db->get('alimentos', 3);
+
+            //if ($get_data->num_rows() < 1){
+                //return false ;
+            //}
+        //return $get_data->result();
+
+         $this->db->distinct();
+        $this->db->select('
+           
+            alimentos.IDAlimento as idalimento,
+            alimentos.Nombre as nombrealimento,
+            
+
+            detallereceta.IDAlimento as idalimento,
+            detallereceta.IDReceta as idreceta,
+            detallereceta.nombrerec as nombrereceta
+
+            recetas.IDReceta as idreceta2,
+            recetas.preparacion as preparacion,
+            recetas.totalcalorias as calorias
+            
+            
+           
+            
+           
+        ');
+        $this->db->from('alimentos');
+        $this->db->join('detallereceta', 'detallereceta.IDAlimento = alimentos.IDAlimento');
+        $this->db->join('recetas', 'recetas.IDReceta = detallereceta.IDReceta');
+       
+        $this->db->like('Nombre', $alimentoreceta);
+        //$this->db->where('recetas.IDReceta', $dia);
+        //$this->db->where('dietaplato.plato', $plato);
+
+
+
+        $query = $this->db->get();
+
+        if ($query->num_rows() < 1) {
+            return FALSE;
+        }
+
+        return $query->result();
+
+    }
+
+    public function busquedareceta($idreceta){
+
+        $this->db->distinct();
+        $this->db->select('
+           
+            recetas.IDReceta as idreceta,
+            recetas.Nombre as nombrereceta,
+            recetas.totalcalorias as totalcalorias,
+            recetas.preparacion as preparacion
+
+            detallereceta.IDAlimento as idalimento,
+            detallereceta.IDReceta as idreceta,
+            detallereceta.nombrerec as nombrereceta
+            
+            
+            alimentos.IDAlimento as id,
+            alimentos.Nombre as nombrealimento,
+            alimentos.img as imagenalimento
+            
+           
+        ');
+        $this->db->from('detallereceta');
+        $this->db->join('alimentos', 'alimentos.IDAlimento = detallereceta.IDAlimento');
+        $this->db->join('recetas', 'recetas.IDReceta = detallereceta.IDReceta');
+       
+        $this->db->where('detallereceta.IDReceta', $idreceta);
+        //$this->db->where('recetas.IDReceta', $dia);
+        //$this->db->where('dietaplato.plato', $plato);
+
+
+
+        $query = $this->db->get();
+
+        if ($query->num_rows() < 1) {
+            return FALSE;
+        }
+
+        return $query->result();
+
+    }
 }
 
 
