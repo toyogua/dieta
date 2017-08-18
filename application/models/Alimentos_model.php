@@ -114,29 +114,19 @@ class Alimentos_model extends CI_Model{
             alimentos.IDAlimento as idalimento,
             alimentos.Nombre as nombrealimento,
             
-
             detallereceta.IDAlimento as idalimento,
             detallereceta.IDReceta as idreceta,
             detallereceta.nombrerec as nombrereceta
 
-            recetas.IDReceta as idreceta2,
-            recetas.preparacion as preparacion,
-            recetas.totalcalorias as calorias
-            
-            
-           
-            
-           
-        ');
+           ');
+
         $this->db->from('alimentos');
         $this->db->join('detallereceta', 'detallereceta.IDAlimento = alimentos.IDAlimento');
-        $this->db->join('recetas', 'recetas.IDReceta = detallereceta.IDReceta');
+        //$this->db->join('recetas', 'recetas.IDReceta = detallereceta.IDReceta');
        
         $this->db->like('Nombre', $alimentoreceta);
         //$this->db->where('recetas.IDReceta', $dia);
         //$this->db->where('dietaplato.plato', $plato);
-
-
 
         $query = $this->db->get();
 
@@ -153,22 +143,18 @@ class Alimentos_model extends CI_Model{
         $this->db->distinct();
         $this->db->select('
            
-            recetas.IDReceta as idreceta,
-            recetas.Nombre as nombrereceta,
-            recetas.totalcalorias as totalcalorias,
-            recetas.preparacion as preparacion
-
-            detallereceta.IDAlimento as idalimento,
-            detallereceta.IDReceta as idreceta,
-            detallereceta.nombrerec as nombrereceta
+           detallereceta.IDReceta as idreceta,
+           detallereceta.nombrerec as nombrereceta,
             
-            
-            alimentos.IDAlimento as id,
+            alimentos.IDAlimento as idalimento,
             alimentos.Nombre as nombrealimento,
-            alimentos.img as imagenalimento
+            alimentos.img as imagen,
             
-           
-        ');
+            recetas.totalcalorias as calorias,
+            recetas.preparacion as preparacion
+            
+            ');
+
         $this->db->from('detallereceta');
         $this->db->join('alimentos', 'alimentos.IDAlimento = detallereceta.IDAlimento');
         $this->db->join('recetas', 'recetas.IDReceta = detallereceta.IDReceta');
@@ -176,7 +162,6 @@ class Alimentos_model extends CI_Model{
         $this->db->where('detallereceta.IDReceta', $idreceta);
         //$this->db->where('recetas.IDReceta', $dia);
         //$this->db->where('dietaplato.plato', $plato);
-
 
 
         $query = $this->db->get();

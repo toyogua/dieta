@@ -1264,26 +1264,20 @@ $(document).ready(function(){
             data: {idreceta: idreceta},
             
             success: function(res){console.log(res);
-                if (res) {
 
-                    
-                    //var resultadocalorias =0;
+            if (res) {
 
-                    
-       
-        $.each(res, function (j, val) {
+                $.each(res, function (j, val) {
 
-                        //var convertidas = parseInt(val.calorias);
-                        //resultadocalorias = resultadocalorias + convertidas;
+
 
                         //$("table#"+diaseleccionado+idplatoseleccionado).append( '<tr class="list-group-item-info"><td>' + val.alimento + '</td><td>' + val.nombrecategoria + '</td><td>' + val.calorias + '</td></tr>' ); 
-                        
-                        
-                    });
+                });
 
-                //var texto= "Total calorias ";    //variable solo para imprimir
-                //var vacio = "";
-                //$("table#"+diaseleccionado+idplatoseleccionado).append( '<tr><td>'+ texto + '</td><td>' + resultadocalorias + '</td><td>' + vacio + '</td></tr>' ); 
+                var b = res[res.length-1];
+                console.log(b);
+                console.log(b.nombrereceta);
+
 
                 }else{
 
