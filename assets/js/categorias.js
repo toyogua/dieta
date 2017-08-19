@@ -1278,6 +1278,10 @@ $(document).ready(function(){
                 console.log(b);
                 console.log(b.nombrereceta);
 
+                $("#lblnombreceta").text(b.nombrereceta);
+                $("#lblpreparacionreceta").text(b.preparacion);
+                $("#lblcalorias").text(b.calorias);
+
 
                 }else{
 

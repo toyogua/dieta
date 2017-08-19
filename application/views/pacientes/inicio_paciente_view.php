@@ -153,6 +153,12 @@
             </ul>
 
 
+
+
+        </div>
+        <div class="col-md-5">
+            <label class="list-group-item" id="lblnombreceta"></label>
+            <label class="list-group-item" id="lblpreparacionreceta"></label>
         </div>
 
         <div style="margin-left: 15px;" class="col-md-2">
