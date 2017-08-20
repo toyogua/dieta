@@ -147,8 +147,10 @@ class Alimentos_model extends CI_Model{
            detallereceta.nombrerec as nombrereceta,
             
             alimentos.IDAlimento as idalimento,
+            alimentos.IDCategoria as idcategoria,
             alimentos.Nombre as nombrealimento,
             alimentos.img as imagen,
+            
             
             recetas.totalcalorias as calorias,
             recetas.preparacion as preparacion

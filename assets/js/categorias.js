@@ -1250,6 +1250,7 @@ $(document).ready(function(){
             var nombrealimento = $(this).data("nombre");
             var idreceta = $(this).data("receta");
 
+
             //idactualpacientereporte = idpaciente;
             //nombreactualpacientereporte = nombrepaciente;
 
@@ -1266,9 +1267,37 @@ $(document).ready(function(){
             success: function(res){console.log(res);
 
             if (res) {
-
+                //var tl = new TimelineMax(); //variabla para la animacion
                 $.each(res, function (j, val) {
 
+                    var img = val.imagen;
+                    var cargar = "assets/img/alimentos/"+img+".png";
+                   /* if (val.idcategoria==2){
+                        var img = val.imagen;
+                        //variables para las urls de las imagenes
+                        var cargar = "assets/img/alimentos/"+img+".png";
+                        $("#imgc1").attr('src', cargar);
+
+                    }*/
+
+                    if (val.idcategoria <=4 ) {
+                        $("#imgc1").attr('src', cargar);
+                        /*tl.from("#imgc1", 1.3, { x: "+=850px", ease: Bounce.easeOut })
+                            .from("#imgc1", 1, {opacity:0}, "-=1.3" );*/
+
+                    }else
+                    if (val.idcategoria <= 7){
+
+                        $("#imgc2").attr('src', cargar);
+                        /*tl.from("#imgc2", 1.3, { x: "+=850px", ease: Bounce.easeOut })
+                            .from("#imgc2", 1, {opacity:0}, "-=1.3" );*/
+
+                    }else
+                    if (val.idcategoria > 7){
+                        $("#imgc3").attr('src', cargar);
+                       /* tl.from("#imgc3", 1.3, { x: "+=850px", ease: Bounce.easeOut })
+                            .from("#imgc3", 1, {opacity:0}, "-=1.3" );*/
+                    }
 
 
                         //$("table#"+diaseleccionado+idplatoseleccionado).append( '<tr class="list-group-item-info"><td>' + val.alimento + '</td><td>' + val.nombrecategoria + '</td><td>' + val.calorias + '</td></tr>' ); 
