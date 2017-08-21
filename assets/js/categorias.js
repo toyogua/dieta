@@ -1270,6 +1270,19 @@ $(document).ready(function(){
                 //var tl = new TimelineMax(); //variabla para la animacion
                 $.each(res, function (j, val) {
 
+                    //cada alimento se agrega al arreglo
+                    alimentos.listos.push({
+                        "idcombinacion" : idselecciongr,
+                        "nombrecombinacion" : nombrecombinacion,
+                        "idalimento"    : id,
+                        "idcategoria"   : idcategoria,
+                        "idpaciente"    : actualpaciente,
+                        "iddia"         : iddia,
+                        "idplato"       : idplatos
+
+
+                    });
+
                     var img = val.imagen;
                     var cargar = "assets/img/alimentos/"+img+".png";
                    /* if (val.idcategoria==2){
