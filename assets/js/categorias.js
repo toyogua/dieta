@@ -271,7 +271,8 @@ $(document).ready(function(){
                     });
 
                     var imagen = archivo;
-                    //var imagen2 = "tortillas";
+                   
+                    
                     
                     var url = "assets/img/alimentos/"+imagen+".png";
                     
@@ -1260,6 +1261,7 @@ $(document).ready(function(){
         }
         });
 
+        //cuando se da click sobre alguno de los nombres de las recetas encontradas
         $(".cargaralimento").live('click', function(e){
             e.preventDefault();
             
