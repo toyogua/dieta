@@ -273,14 +273,12 @@ $(document).ready(function(){
                     var imagen = archivo;
                     //var imagen2 = "tortillas";
                     
-                    //variables para las urls de las imagenes
                     var url = "assets/img/alimentos/"+imagen+".png";
-                    //var url2 = "assets/img/alimentos/"+ imagen2 + ".png";
+                    
 
                     var tl = new TimelineMax(); //variabla para la animacion
 
-                    // console.log(id);
-
+                  
                  if (idselecciongr ==1 ){
 
                     if (idcategoria ==2 ) {
@@ -1264,13 +1262,14 @@ $(document).ready(function(){
 
         $(".cargaralimento").live('click', function(e){
             e.preventDefault();
+            
             var idalimento = $(this).data("id");
             var nombrealimento = $(this).data("nombre");
             var idreceta = $(this).data("receta");
 
-
-            //idactualpacientereporte = idpaciente;
-            //nombreactualpacientereporte = nombrepaciente;
+            //variable para cambiar el fondo al normal cuando se elige la receta
+            var nuevofondo = "assets/img/plato.png";
+            $("#fondoprincipal").attr('src', nuevofondo);
 
             
             $("#receta").val(nombrealimento);
@@ -1285,7 +1284,7 @@ $(document).ready(function(){
             success: function(res){console.log(res);
 
             if (res) {
-                //var tl = new TimelineMax(); //variabla para la animacion
+                
                 $.each(res, function (j, val) {
 
                     //cada alimento se agrega al arreglo
@@ -1295,64 +1294,58 @@ $(document).ready(function(){
                         "nombrereceta"  : val.nombrereceta,
                         "idalimento"    : val.idalimento,
                         "idcategoria"   : val.idcategoria,
-
                         "idcombinacion" : idselecciongr,
                         "nombrecombinacion" : nombrecombinacion,
-                        
-                       
                         "idpaciente"    : actualpaciente,
                         "iddia"         : iddia,
                         "idplato"       : idplatos
-                        
-
-
-                    });
+                        });
 
                     console.log(alimentos.listos);
 
                     var img = val.imagen;
                     var cargar = "assets/img/alimentos/"+img+".png";
-                   /* if (val.idcategoria==2){
-                        var img = val.imagen;
-                        //variables para las urls de las imagenes
-                        var cargar = "assets/img/alimentos/"+img+".png";
-                        $("#imgc1").attr('src', cargar);
+                   
+                        if (val.idcategoria ==4 ) {
+                            $("#imgc1").attr('src', cargar);
+                        
+                        }else
+                            if (val.idcategoria == 3){
 
-                    }*/
-
-                    if (val.idcategoria <=4 ) {
-                        $("#imgc1").attr('src', cargar);
-                        /*tl.from("#imgc1", 1.3, { x: "+=850px", ease: Bounce.easeOut })
-                            .from("#imgc1", 1, {opacity:0}, "-=1.3" );*/
-
-                    }else
-                    if (val.idcategoria <= 7){
-
-                        $("#imgc2").attr('src', cargar);
-                        /*tl.from("#imgc2", 1.3, { x: "+=850px", ease: Bounce.easeOut })
-                            .from("#imgc2", 1, {opacity:0}, "-=1.3" );*/
-
-                    }else
-                    if (val.idcategoria > 7){
-                        $("#imgc3").attr('src', cargar);
-                       /* tl.from("#imgc3", 1.3, { x: "+=850px", ease: Bounce.easeOut })
-                            .from("#imgc3", 1, {opacity:0}, "-=1.3" );*/
-                    }
-
-
-                        //$("table#"+diaseleccionado+idplatoseleccionado).append( '<tr class="list-group-item-info"><td>' + val.alimento + '</td><td>' + val.nombrecategoria + '</td><td>' + val.calorias + '</td></tr>' ); 
+                                $("#imgc2").attr('src', cargar);
+                        
+                            }else
+                                if (val.idcategoria == 5){
+                                    
+                                    $("#imgc3").attr('src', cargar);
+                                }
+                                else
+                                    if (val.idcategoria == 2){
+                                    
+                                        $("#imgc5").attr('src', cargar);
+                                    }
+                                    else
+                                        if (val.idcategoria == 1){
+                                    
+                                            $("#imgc4").attr('src', cargar);
+                                        }
+                                        else
+                                            if (val.idcategoria > 5){
+                                    
+                                                $("#imgc4").attr('src', cargar);
+                                            }
                 });
 
+                //tomamon el ultimo elemento del array res 
                 var b = res[res.length-1];
-                console.log(b);
-                console.log(b.nombrereceta);
+                
 
                 $("#lblnombreceta").text(b.nombrereceta);
                 $("#lblpreparacionreceta").text(b.preparacion);
                 $("#lblcalorias").text("Total de calorias en esta receta: "+b.calorias);
 
 
-                }else{
+            }else{
 
                     //swal("Ops", "Este plato no contiene alimentos", "error")
                 }
