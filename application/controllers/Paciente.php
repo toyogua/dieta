@@ -106,6 +106,7 @@ class Paciente extends CI_Controller
         foreach($listaalimentos as $alimento)
         {
             echo $alimento->idcombinacion . ', ';
+            echo $alimento->idcombinacion . ', ';
             echo $alimento->nombrecombinacion . ', ';
             echo $alimento->idpaciente . ', ';
             echo $alimento->iddia . ', ';
@@ -116,11 +117,13 @@ class Paciente extends CI_Controller
             echo '<br/>';
             $dataalimentos = array(
 
-                'idcombinacion'             =>  $alimento->idcombinacion,
-                'combinacion'             =>  $alimento->nombrecombinacion,
-                'paciente'             =>  $alimento->idpaciente,
-                'dia'             => $alimento->iddia,
-                'plato'             => $alimento->idplato,
+                'idreceta'             => $alimento->idreceta,
+                'nombrereceta'         => $alimento->nombrereceta,
+                'idcombinacion'        => $alimento->idcombinacion,
+                'combinacion'          => $alimento->nombrecombinacion,
+                'paciente'             => $alimento->idpaciente,
+                'dia'                  => $alimento->iddia,
+                'plato'                => $alimento->idplato,
                 'alimento'             => $alimento->idalimento,
                 'categoria'            => $alimento->idcategoria
             );

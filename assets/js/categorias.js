@@ -1219,7 +1219,24 @@ $(document).ready(function(){
         $("#receta").keyup(function(e){
 
 
+    //verificamos que el usuario ya se haya identificado, de lo contrario no permite escribir y buscar la receta
+    if (actualpaciente ==0) {
 
+        swal("Ops", "Necesitas estar identificado", "error");
+        $("#receta").val("");
+
+
+    }  else if (iddia==0) {
+
+        swal("Ops", "Necesitas elegir un dia primero", "error");
+        $("#receta").val("");
+
+            }else if (idplatos==0) {
+
+                    swal("Ops", "Necesitas elegir un plato primero", "error");
+                    $("#receta").val("");
+
+                    }else{      
         var contenido3 = "";
 
        
@@ -1242,6 +1259,7 @@ $(document).ready(function(){
                     };
                 });
             }
+        }
         });
 
         $(".cargaralimento").live('click', function(e){
@@ -1272,16 +1290,25 @@ $(document).ready(function(){
 
                     //cada alimento se agrega al arreglo
                     alimentos.listos.push({
+                       
+                        "idreceta"      : val.idreceta,
+                        "nombrereceta"  : val.nombrereceta,
+                        "idalimento"    : val.idalimento,
+                        "idcategoria"   : val.idcategoria,
+
                         "idcombinacion" : idselecciongr,
                         "nombrecombinacion" : nombrecombinacion,
-                        "idalimento"    : id,
-                        "idcategoria"   : idcategoria,
+                        
+                       
                         "idpaciente"    : actualpaciente,
                         "iddia"         : iddia,
                         "idplato"       : idplatos
+                        
 
 
                     });
+
+                    console.log(alimentos.listos);
 
                     var img = val.imagen;
                     var cargar = "assets/img/alimentos/"+img+".png";
@@ -1322,7 +1349,7 @@ $(document).ready(function(){
 
                 $("#lblnombreceta").text(b.nombrereceta);
                 $("#lblpreparacionreceta").text(b.preparacion);
-                $("#lblcalorias").text(b.calorias);
+                $("#lblcalorias").text("Total de calorias en esta receta: "+b.calorias);
 
 
                 }else{
