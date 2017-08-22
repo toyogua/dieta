@@ -68,7 +68,7 @@ $(document).ready(function(){
             }
         });
 
-        $(".respaciente").live('click', function(e){
+        $(".respaciente").live("click", function(e){
             e.preventDefault();
             var idpaciente = $(this).data("id");
             var nombrepaciente = $(this).data("nombre");
@@ -81,7 +81,7 @@ $(document).ready(function(){
             $(".bigBox-Boton").show();
         });
 
-        $(".bigBox-Boton").live('click', function () {
+        $(".bigBox-Boton").live("click", function () {
 
             $(".bigBox-fondo").remove();
             $(".bigBox-contenedor").remove();
@@ -182,7 +182,7 @@ $(document).ready(function(){
 
     $("#categoria").live('click', function(){
 
-        //var id = 
+        //var id =
         //corregido el bug de sumar 1 al id de la categoria
         var dato = $(this).data("id");
 
@@ -222,7 +222,7 @@ $(document).ready(function(){
     //cuando se de click sobre cada alimento
     $("#alimento").live('click', function(){
 
-        //var idalimento = 
+        //var idalimento =
         //corregido el bug de sumar 1 al id del alimento
         var id = $(this).data("id");
 
@@ -271,15 +271,15 @@ $(document).ready(function(){
                     });
 
                     var imagen = archivo;
-                   
-                    
-                    
+
+
+
                     var url = "assets/img/alimentos/"+imagen+".png";
-                    
+
 
                     var tl = new TimelineMax(); //variabla para la animacion
 
-                  
+
                  if (idselecciongr ==1 ){
 
                     if (idcategoria ==2 ) {
@@ -325,7 +325,7 @@ $(document).ready(function(){
                                     .from("#imgc4", 1, {opacity:0}, "-=1.3" );
                             }
 
-                    
+
                     swal("Alimento agregado", "Su alimento fue agregado al plato", "success");
                     console.log(imagen);
                  } //fin del if (idselecciongr ==1 )
@@ -999,7 +999,7 @@ $(document).ready(function(){
                     };
 
                     //regresamos las imagenes iniciales a cada plato
-                    var url = "assets/img/alimentos/mas.png";    
+                    var url = "assets/img/alimentos/mas.png";
                     $("#imgc1").attr('src', url);
                     $("#imgc2").attr('src', url);
                     $("#imgc3").attr('src', url);
@@ -1049,94 +1049,97 @@ $(document).ready(function(){
 //hacemos focus al campo de búsqueda
         $("#pacientereporte").focus();
         //comprobamos si se pulsa una tecla
-        $("#pacientereporte").keyup(function(e){
+        $("#pacientereporte").keyup(function(e)
+        {
 
-
-
-        var contenido = "";
-
-       
-        contenido +='<ul class="list-group" id="pacientesreportes"></ul>';
-       
-        $("#cargabusqueda").append(contenido);
+          var contenido = "";
+          contenido +='<ul class="list-group" id="pacientesreportes"></ul>';
+          $("#cargabusqueda").append(contenido);
 
             var consulta;
             //obtenemos el texto introducido en el campo de búsqueda
             consulta = $("#pacientereporte").val();
             //hace la búsqueda
-            if (consulta != "") {
-                $.post(baseurl+'paciente/busquedapaciente', {nombre: consulta}, function(mensaje) {
-                    if (mensaje!= '') {
+            if (consulta != "")
+            {
+                $.post(baseurl+'paciente/busquedapaciente', {nombre: consulta}, function(mensaje)
+                {
+                    if (mensaje!= '')
+                    {
                         $("#pacientesreportes").show();
                         $("#pacientesreportes").html(mensaje);
                         console.log(mensaje);
-                    } else{
+                    } else
+                    {
                         $("#pacientesreportes").html('');
                     };
                 });
             }
         });
 
-        $(".cargarpaciente").live('click', function(e){
+        //cuando se da click sobre el nombre de algun paciente determinado
+        $(".cargarpaciente").live('click', function(e)
+        {
             e.preventDefault();
+            //capturamos el id del paciente
             var idpaciente = $(this).data("id");
+            //capturamos el nombre del paciente
             var nombrepaciente = $(this).data("nombre");
 
+            //asignamos a la variable global el valor de la variable local
             idactualpacientereporte = idpaciente;
+            //asignamos a la variable global el valor de la variable local
             nombreactualpacientereporte = nombrepaciente;
-
-            
+            //al input tipo text le colocamos el valor de la variable
             $("#pacientereporte").val(nombrepaciente);
             $("#pacientesreportes").remove();
-            
+
         });
 
 
         //capturamos el click sobre cualquier plato seleccionado
-        $(".platosreporte").click(function(){
+        $(".platosreporte").click(function()
+        {
 
-            if (idactualpacientereporte===0) {
+            if (idactualpacientereporte===0)
+            {
                  swal("Paciente no exite", "Debes elegir un paciente primero", "error")
 
                  return false;
-            }else{
+            }else
+            {
 
-            
+              //variable que nos permite hacer cache del objeto this
+              var elemento = this;
+              elemento.disabled=true;
 
-            var elemento = this;
-            elemento.disabled=true;
+              //capturamos el id del dia seleccionado
+              var diaseleccionado = $(this).data("dia");
+              //capturamos el id del plato seleccionado
+              var idplatoseleccionado = $(this).data("idplato");
 
-             var diaseleccionado = $(this).data("dia");
-             var idplatoseleccionado = $(this).data("idplato");
+              $.ajax({
+              type: "POST",
+              url: baseurl+'admin/buscardatospaciente',
+              dataType: 'json',
+              data: {idpaciente: idactualpacientereporte, dia: diaseleccionado, elplato: idplatoseleccionado},
+              success: function(res){console.log(res);
+                if (res)
+                {
+                  var resultadocalorias =0;
+                  $.each(res, function (j, val)
+                  {
+                    var convertidas = parseInt(val.calorias);
+                    resultadocalorias = resultadocalorias + convertidas;
+                    $("table#"+diaseleccionado+idplatoseleccionado).append( '<tr class="list-group-item-info"><td>' + val.nombrereceta +'</td><td>' + val.combinacion + '</td><td>' + val.alimento + '</td><td>' + val.nombrecategoria + '</td><td>' + val.calorias + '</td></tr>' );
+                  });
 
-             $.ajax({
-            type: "POST",
-            url: baseurl+'admin/buscardatospaciente',
-            dataType: 'json',
-            data: {idpaciente: idactualpacientereporte, dia: diaseleccionado, elplato: idplatoseleccionado},
-            
-            success: function(res){console.log(res);
-                if (res) {
+                  var texto= "Total calorias ";    //variable solo para imprimir
+                  var vacio = "";
+                  $("table#"+diaseleccionado+idplatoseleccionado).append( '<tr><td>'+ texto + '</td><td>' + resultadocalorias + '</td><td>' + vacio + '</td></tr>' );
 
-                    
-                    var resultadocalorias =0;
-                    
-       
-        $.each(res, function (j, val) {
-
-                        var convertidas = parseInt(val.calorias);
-                        resultadocalorias = resultadocalorias + convertidas;
-
-                        $("table#"+diaseleccionado+idplatoseleccionado).append( '<tr class="list-group-item-info"><td>' + val.alimento + '</td><td>' + val.nombrecategoria + '</td><td>' + val.calorias + '</td></tr>' ); 
-                        
-                        
-                    });
-
-                var texto= "Total calorias ";    //variable solo para imprimir
-                var vacio = "";
-                $("table#"+diaseleccionado+idplatoseleccionado).append( '<tr><td>'+ texto + '</td><td>' + resultadocalorias + '</td><td>' + vacio + '</td></tr>' ); 
-
-                }else{
+                }else
+                {
 
                     swal("Ops", "Este plato no contiene alimentos", "error")
                 }
@@ -1185,21 +1188,25 @@ $(document).ready(function(){
 
 
 
-        if (idselecciongr == 1 ){
+        if (idselecciongr == 1 )
+        {
             $("#fondoprincipal").attr('src', url);
 
         }
-        if (idselecciongr == 2 ){
+        if (idselecciongr == 2 )
+        {
             $("#fondoprincipal").attr('src', url2);
 
         }
 
-        if (idselecciongr == 3 ){
+        if (idselecciongr == 3 )
+        {
             $("#fondoprincipal").attr('src', url3);
 
         }
 
-        if (idselecciongr == 4 ){
+        if (idselecciongr == 4 )
+        {
             $("#fondoprincipal").attr('src', url4);
 
         }
@@ -1211,60 +1218,73 @@ $(document).ready(function(){
     });
 
 
-       
+
         //DETECTAMOS TECLAS PRESIONADAS SOBRE EL INPUT DE BUSCAR ALIMENTO Y REALIZAMOS LA BUSQUEDA
        $("#receta").focus();
         //comprobamos si se pulsa una tecla
-        $("#receta").keyup(function(e){
+        $("#receta").keyup(function(e)
+        {
 
 
     //verificamos que el usuario ya se haya identificado, de lo contrario no permite escribir y buscar la receta
-    if (actualpaciente ==0) {
+    if (actualpaciente ==0)
+    {
 
         swal("Ops", "Necesitas estar identificado", "error");
         $("#receta").val("");
 
 
-    }  else if (iddia==0) {
+    }  else if (iddia==0)
+    {
 
         swal("Ops", "Necesitas elegir un dia primero", "error");
         $("#receta").val("");
 
-            }else if (idplatos==0) {
+            }else if (idplatos==0)
+            {
 
                     swal("Ops", "Necesitas elegir un plato primero", "error");
                     $("#receta").val("");
 
-                    }else{      
-        var contenido3 = "";
+                    }
+                    else
+                    {
+                        var contenido3 = "";
 
-       
-        contenido3 +='<ul class="list-group" id="findrecetas"></ul>';
-       
-        $("#recetaencontrada").append(contenido3);
 
-            var consulta3;
-            //obtenemos el texto introducido en el campo de búsqueda
-            consulta3 = $("#receta").val();
-            //hace la búsqueda
-            if (consulta3 != "") {
-                $.post(baseurl+'paciente/buscaralimentoreceta', {alimento: consulta3}, function(mensaje) {
-                    if (mensaje!= '') {
-                        $("#findrecetas").show();
-                        $("#findrecetas").html(mensaje);
-                        console.log(mensaje);
-                    } else{
-                        $("#findrecetas").html('');
-                    };
-                });
-            }
-        }
+                        contenido3 +='<ul class="list-group" id="findrecetas"></ul>';
+
+                        $("#recetaencontrada").append(contenido3);
+
+                        var consulta3;
+                        //obtenemos el texto introducido en el campo de búsqueda
+                        consulta3 = $("#receta").val();
+                        //hace la búsqueda
+                        if (consulta3 != "")
+                        {
+                          $.post(baseurl+'paciente/buscaralimentoreceta',
+                          {
+                            alimento: consulta3}, function(mensaje)
+                            {
+                              if (mensaje!= '')
+                              {
+                                $("#findrecetas").show();
+                                $("#findrecetas").html(mensaje);
+                                console.log(mensaje);
+                              }
+                              else
+                              {
+                              $("#findrecetas").html('');
+                              };
+                            });
+                          }
+                        }
         });
 
         //cuando se da click sobre alguno de los nombres de las recetas encontradas
         $(".cargaralimento").live('click', function(e){
             e.preventDefault();
-            
+
             var idalimento = $(this).data("id");
             var nombrealimento = $(this).data("nombre");
             var idreceta = $(this).data("receta");
@@ -1273,7 +1293,7 @@ $(document).ready(function(){
             var nuevofondo = "assets/img/plato.png";
             $("#fondoprincipal").attr('src', nuevofondo);
 
-            
+
             $("#receta").val(nombrealimento);
             $("#findrecetas").remove();
 
@@ -1282,16 +1302,16 @@ $(document).ready(function(){
             url: baseurl+'paciente/getreceta',
             dataType: 'json',
             data: {idreceta: idreceta},
-            
+
             success: function(res){console.log(res);
 
             if (res) {
-                
+
                 $.each(res, function (j, val) {
 
                     //cada alimento se agrega al arreglo
                     alimentos.listos.push({
-                       
+
                         "idreceta"      : val.idreceta,
                         "nombrereceta"  : val.nombrereceta,
                         "idalimento"    : val.idalimento,
@@ -1307,40 +1327,40 @@ $(document).ready(function(){
 
                     var img = val.imagen;
                     var cargar = "assets/img/alimentos/"+img+".png";
-                   
+
                         if (val.idcategoria ==4 ) {
                             $("#imgc1").attr('src', cargar);
-                        
+
                         }else
                             if (val.idcategoria == 3){
 
                                 $("#imgc2").attr('src', cargar);
-                        
+
                             }else
                                 if (val.idcategoria == 5){
-                                    
+
                                     $("#imgc3").attr('src', cargar);
                                 }
                                 else
                                     if (val.idcategoria == 2){
-                                    
+
                                         $("#imgc5").attr('src', cargar);
                                     }
                                     else
                                         if (val.idcategoria == 1){
-                                    
+
                                             $("#imgc4").attr('src', cargar);
                                         }
                                         else
                                             if (val.idcategoria > 5){
-                                    
+
                                                 $("#imgc4").attr('src', cargar);
                                             }
                 });
 
-                //tomamon el ultimo elemento del array res 
+                //tomamon el ultimo elemento del array res
                 var b = res[res.length-1];
-                
+
 
                 $("#lblnombreceta").text(b.nombrereceta);
                 $("#lblpreparacionreceta").text(b.preparacion);
@@ -1353,7 +1373,7 @@ $(document).ready(function(){
                 }
             }
         });
-            
+
         });
 
 
@@ -1376,5 +1396,3 @@ $(document).ready(function(){
 
 
 });
-
-

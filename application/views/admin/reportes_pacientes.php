@@ -1,30 +1,21 @@
 <section id="reportes">
-   
+
     <div class="row">
-
-
-        <div class="col-md-5">
-
-
-            <div class="md-form">
-
-                <i class="fa fa-user prefix"></i>
+      <div class="col-md-5">
+        <div class="md-form">
+            <i class="fa fa-user prefix"></i>
                 <input type="text" id="pacientereporte" placeholder="Nombre paciente" class="pacientereporte form-control" >
-
-            </div>
-
-
         </div>
+      </div>
 
-
-        <div class="col-md-2">
+          <div class="col-md-2">
 
             <button id="btnlimmpiarreporte" class="btn btn-danger">Limpiar</button>
-        </div>
-        <div id="imprimir" class="col-md-2">
+          </div>
+          <div id="imprimir" class="col-md-2">
 
             <button id="btnimprimir" class="btn btn-danger">Imprimir </button>
-        </div>
+          </div>
 
     </div> <!-- fin del row -->
     <div class="row">
@@ -32,11 +23,11 @@
 
     </div>
     </div>
-       
-    
+
+
 
     <div class="col-md-12">
-        
+
             <div class="btn btn-secondary btn-sm"><a class="dias" data-linkdia="lunes" href="">Lunes</a></div>
             <div class="row">
                 <div class="col-md-3">
@@ -44,40 +35,46 @@
                         <div>
                         <table id="lunes1" class="tabladesayuno table table-striped ">
                             <tr>
-                    
+
+                            <th>Receta</th>
+                            <th>Combinacion</th>
                             <th>Alimento</th>
                             <th>Categoria</th>
                             <th>Calorias</th>
                             </tr>
                         </table>
                         </div>
-                    
+
                 </div>
                 <div class="col-md-3">
                     <button class="platosreporte btn btn-primary btn-sm" data-dia="lunes" data-idplato="2">Refaccion 1</button>
 
                         <table id="lunes2"class="tablarefaccion1 table table-striped ">
                             <tr>
-                    
-                            <th>Alimento</th>
-                            <th>Categoria</th>
-                            <th>Calorias</th>
-                            </tr>
-                        </table>
-                    
-                </div>
-                <div class="col-md-3">
-                    <button class="platosreporte btn btn-primary btn-sm" data-dia="lunes" data-idplato="3">Almuerzo</button>
-                        <table id="lunes3" class="tablaalmuerzo table table-striped ">
-                            <tr>
-                    
+
+                            <th>Receta</th>
+                            <th>combinacion</th>
                             <th>Alimento</th>
                             <th>Categoria</th>
                             <th>Calorias</th>
                             </tr>
                         </table>
 
-                    
+                </div>
+                <div class="col-md-3">
+                    <button class="platosreporte btn btn-primary btn-sm" data-dia="lunes" data-idplato="3">Almuerzo</button>
+                        <table id="lunes3" class="tablaalmuerzo table table-striped ">
+                            <tr>
+
+                            <th>Receta</th>
+                            <th>Combinacion</th>
+                            <th>Alimento</th>
+                            <th>Categoria</th>
+                            <th>Calorias</th>
+                            </tr>
+                        </table>
+
+
                 </div>
 
                 <div class="col-md-3">
@@ -85,18 +82,20 @@
 
                         <table id="lunes4" class="tablarefaccion2 table table-striped table table-hover">
                             <tr>
-                    
+
+                            <th>Receta</th>
+                            <th>Combinacion</th>
                             <th>Alimento</th>
                             <th>Categoria</th>
                             <th>Calorias</th>
                             </tr>
                         </table>
 
-                     
-                </div>   
-            
+
+                </div>
+
             </div><!-- fin del row -->
-            
+
 
             <div class="row">
 
@@ -106,14 +105,16 @@
 
                          <table id="lunes5" class="tablacena table table-striped table table-hover">
                             <tr>
-                    
+
+                            <th>Receta</th>
+                            <th>Combinacion</th>
                             <th>Alimento</th>
                             <th>Categoria</th>
                             <th>Calorias</th>
                             </tr>
                         </table>
 
-                     
+
                 </div>
 
                 <div class="col-md-3">
@@ -122,14 +123,16 @@
 
                          <table id="lunes6" class="tablarefaccion3 table table-striped table table-hover">
                             <tr>
-                    
+
+                            <th>Receta</th>
+                            <th>Combinacion</th>
                             <th>Alimento</th>
                             <th>Categoria</th>
                             <th>Calorias</th>
                             </tr>
                         </table>
 
-                     
+
                 </div>
 
                 <div class="col-md-3">
@@ -138,14 +141,16 @@
 
                          <table id="lunes7" class="tablarefaccion4 table table-striped table table-hover">
                             <tr>
-                    
+
+                            <th>Receta</th>
+                            <th>Combinacion</th>
                             <th>Alimento</th>
                             <th>Categoria</th>
                             <th>Calorias</th>
                             </tr>
                         </table>
 
-                     
+
                 </div>
 
             </div> <!-- fin del row --> <!-- fin del dia lunes -->
@@ -162,6 +167,8 @@
                     <table id="martes1" class="tabladesayuno table table-striped ">
                         <tr>
 
+                            <th>Receta</th>
+                            <th>Combinacion</th>
                             <th>Alimento</th>
                             <th>Categoria</th>
                             <th>Calorias</th>
@@ -176,6 +183,8 @@
                 <table id="martes2"class="tablarefaccion1 table table-striped ">
                     <tr>
 
+                        <th>Receta</th>
+                        <th>Combinacion</th>
                         <th>Alimento</th>
                         <th>Categoria</th>
                         <th>Calorias</th>
@@ -188,6 +197,8 @@
                 <table id="martes3" class="tablaalmuerzo table table-striped ">
                     <tr>
 
+                        <th>Receta</th>
+                        <th>Combinacion</th>
                         <th>Alimento</th>
                         <th>Categoria</th>
                         <th>Calorias</th>
@@ -203,6 +214,8 @@
                 <table id="martes4" class="tablarefaccion2 table table-striped table table-hover">
                     <tr>
 
+                        <th>Receta</th>
+                        <th>Combinacion</th>
                         <th>Alimento</th>
                         <th>Categoria</th>
                         <th>Calorias</th>
@@ -224,6 +237,8 @@
                 <table id="martes5" class="tablacena table table-striped table table-hover">
                     <tr>
 
+                        <th>Receta</th>
+                        <th>Combinacion</th>
                         <th>Alimento</th>
                         <th>Categoria</th>
                         <th>Calorias</th>
@@ -240,6 +255,8 @@
                 <table id="martes6" class="tablarefaccion3 table table-striped table table-hover">
                     <tr>
 
+                        <th>Receta</th>
+                        <th>Combinacion</th>
                         <th>Alimento</th>
                         <th>Categoria</th>
                         <th>Calorias</th>
@@ -256,6 +273,8 @@
                 <table id="martes7" class="tablarefaccion4 table table-striped table table-hover">
                     <tr>
 
+                        <th>Receta</th>
+                        <th>Combinacion</th>
                         <th>Alimento</th>
                         <th>Categoria</th>
                         <th>Calorias</th>
@@ -277,6 +296,8 @@
                     <table id="miercoles1" class="tabladesayuno table table-striped ">
                         <tr>
 
+                            <th>Receta</th>
+                            <th>Combinacion</th>
                             <th>Alimento</th>
                             <th>Categoria</th>
                             <th>Calorias</th>
@@ -291,6 +312,8 @@
                 <table id="miercoles2"class="tablarefaccion1 table table-striped ">
                     <tr>
 
+                        <th>Receta</th>
+                        <th>Combinacion</th>
                         <th>Alimento</th>
                         <th>Categoria</th>
                         <th>Calorias</th>
@@ -303,6 +326,8 @@
                 <table id="miercoles3" class="tablaalmuerzo table table-striped ">
                     <tr>
 
+                        <th>Receta</th>
+                        <th>Combinacion</th>
                         <th>Alimento</th>
                         <th>Categoria</th>
                         <th>Calorias</th>
@@ -318,6 +343,8 @@
                 <table id="miercoles4" class="tablarefaccion2 table table-striped table table-hover">
                     <tr>
 
+                        <th>Receta</th>
+                        <th>Combinacion</th>
                         <th>Alimento</th>
                         <th>Categoria</th>
                         <th>Calorias</th>
@@ -339,6 +366,8 @@
                 <table id="miercoles5" class="tablacena table table-striped table table-hover">
                     <tr>
 
+                        <th>Receta</th>
+                        <th>Combinacion</th>
                         <th>Alimento</th>
                         <th>Categoria</th>
                         <th>Calorias</th>
@@ -355,6 +384,8 @@
                 <table id="miercoles6" class="tablarefaccion3 table table-striped table table-hover">
                     <tr>
 
+                        <th>Receta</th>
+                        <th>Combinacion</th>
                         <th>Alimento</th>
                         <th>Categoria</th>
                         <th>Calorias</th>
@@ -371,6 +402,8 @@
                 <table id="miercoles7" class="tablarefaccion4 table table-striped table table-hover">
                     <tr>
 
+                        <th>Receta</th>
+                        <th>Combinacion</th>
                         <th>Alimento</th>
                         <th>Categoria</th>
                         <th>Calorias</th>
@@ -391,6 +424,8 @@
                     <table id="jueves1" class="tabladesayuno table table-striped ">
                         <tr>
 
+                            <th>Receta</th>
+                            <th>Combinacion</th>
                             <th>Alimento</th>
                             <th>Categoria</th>
                             <th>Calorias</th>
@@ -405,6 +440,8 @@
                 <table id="jueves2"class="tablarefaccion1 table table-striped ">
                     <tr>
 
+                        <th>Receta</th>
+                        <th>Combinacion</th>
                         <th>Alimento</th>
                         <th>Categoria</th>
                         <th>Calorias</th>
@@ -417,6 +454,8 @@
                 <table id="jueves3" class="tablaalmuerzo table table-striped ">
                     <tr>
 
+                        <th>Receta</th>
+                        <th>Combinacion</th>
                         <th>Alimento</th>
                         <th>Categoria</th>
                         <th>Calorias</th>
@@ -432,6 +471,8 @@
                 <table id="jueves4" class="tablarefaccion2 table table-striped table table-hover">
                     <tr>
 
+                        <th>Receta</th>
+                        <th>Combinacion</th>
                         <th>Alimento</th>
                         <th>Categoria</th>
                         <th>Calorias</th>
@@ -453,6 +494,8 @@
                 <table id="jueves5" class="tablacena table table-striped table table-hover">
                     <tr>
 
+                        <th>Receta</th>
+                        <th>Combinacion</th>
                         <th>Alimento</th>
                         <th>Categoria</th>
                         <th>Calorias</th>
@@ -469,6 +512,8 @@
                 <table id="jueves6" class="tablarefaccion3 table table-striped table table-hover">
                     <tr>
 
+                        <th>Receta</th>
+                        <th>Combinacion</th>
                         <th>Alimento</th>
                         <th>Categoria</th>
                         <th>Calorias</th>
@@ -485,6 +530,8 @@
                 <table id="jueves7" class="tablarefaccion4 table table-striped table table-hover">
                     <tr>
 
+                        <th>Receta</th>
+                        <th>Combinacion</th>
                         <th>Alimento</th>
                         <th>Categoria</th>
                         <th>Calorias</th>
@@ -505,6 +552,8 @@
                     <table id="viernes1" class="tabladesayuno table table-striped ">
                         <tr>
 
+                            <th>Receta</th>
+                            <th>Combinacion</th>
                             <th>Alimento</th>
                             <th>Categoria</th>
                             <th>Calorias</th>
@@ -519,6 +568,8 @@
                 <table id="viernes2"class="tablarefaccion1 table table-striped ">
                     <tr>
 
+                        <th>Receta</th>
+                        <th>Combinacion</th>
                         <th>Alimento</th>
                         <th>Categoria</th>
                         <th>Calorias</th>
@@ -531,6 +582,8 @@
                 <table id="viernes3" class="tablaalmuerzo table table-striped ">
                     <tr>
 
+                        <th>Receta</th>
+                        <th>Combinacion</th>
                         <th>Alimento</th>
                         <th>Categoria</th>
                         <th>Calorias</th>
@@ -546,6 +599,8 @@
                 <table id="viernes4" class="tablarefaccion2 table table-striped table table-hover">
                     <tr>
 
+                        <th>Receta</th>
+                        <th>Combinacion</th>
                         <th>Alimento</th>
                         <th>Categoria</th>
                         <th>Calorias</th>
@@ -567,6 +622,8 @@
                 <table id="viernes5" class="tablacena table table-striped table table-hover">
                     <tr>
 
+                        <th>Receta</th>
+                        <th>Combinacion</th>
                         <th>Alimento</th>
                         <th>Categoria</th>
                         <th>Calorias</th>
@@ -583,6 +640,8 @@
                 <table id="viernes6" class="tablarefaccion3 table table-striped table table-hover">
                     <tr>
 
+                        <th>Receta</th>
+                        <th>Combinacion</th>
                         <th>Alimento</th>
                         <th>Categoria</th>
                         <th>Calorias</th>
@@ -599,6 +658,8 @@
                 <table id="viernes7" class="tablarefaccion4 table table-striped table table-hover">
                     <tr>
 
+                        <th>Receta</th>
+                        <th>Combinacion</th>
                         <th>Alimento</th>
                         <th>Categoria</th>
                         <th>Calorias</th>
@@ -619,6 +680,8 @@
                     <table id="sabado1" class="tabladesayuno table table-striped ">
                         <tr>
 
+                            <th>Receta</th>
+                            <th>Combinacion</th>
                             <th>Alimento</th>
                             <th>Categoria</th>
                             <th>Calorias</th>
@@ -633,6 +696,8 @@
                 <table id="sabado2"class="tablarefaccion1 table table-striped ">
                     <tr>
 
+                        <th>Receta</th>
+                        <th>Combinacion</th>
                         <th>Alimento</th>
                         <th>Categoria</th>
                         <th>Calorias</th>
@@ -645,6 +710,8 @@
                 <table id="sabado3" class="tablaalmuerzo table table-striped ">
                     <tr>
 
+                        <th>Receta</th>
+                        <th>Combinacion</th>
                         <th>Alimento</th>
                         <th>Categoria</th>
                         <th>Calorias</th>
@@ -660,6 +727,8 @@
                 <table id="sabado4" class="tablarefaccion2 table table-striped table table-hover">
                     <tr>
 
+                        <th>Receta</th>
+                        <th>Combinacion</th>
                         <th>Alimento</th>
                         <th>Categoria</th>
                         <th>Calorias</th>
@@ -681,6 +750,8 @@
                 <table id="sabado5" class="tablacena table table-striped table table-hover">
                     <tr>
 
+                        <th>Receta</th>
+                        <th>Combinacion</th>
                         <th>Alimento</th>
                         <th>Categoria</th>
                         <th>Calorias</th>
@@ -697,6 +768,8 @@
                 <table id="sabado6" class="tablarefaccion3 table table-striped table table-hover">
                     <tr>
 
+                        <th>Receta</th>
+                        <th>Combinacion</th>
                         <th>Alimento</th>
                         <th>Categoria</th>
                         <th>Calorias</th>
@@ -713,6 +786,8 @@
                 <table id="sabado7" class="tablarefaccion4 table table-striped table table-hover">
                     <tr>
 
+                        <th>Receta</th>
+                        <th>Combinacion</th>
                         <th>Alimento</th>
                         <th>Categoria</th>
                         <th>Calorias</th>
@@ -732,6 +807,8 @@
                     <table id="domingo1" class="tabladesayuno table table-striped ">
                         <tr>
 
+                            <th>Receta</th>
+                            <th>Combinacion</th>
                             <th>Alimento</th>
                             <th>Categoria</th>
                             <th>Calorias</th>
@@ -746,6 +823,8 @@
                 <table id="domingo2"class="tablarefaccion1 table table-striped ">
                     <tr>
 
+                        <th>Receta</th>
+                        <th>Combinacion</th>
                         <th>Alimento</th>
                         <th>Categoria</th>
                         <th>Calorias</th>
@@ -758,6 +837,8 @@
                 <table id="domingo3" class="tablaalmuerzo table table-striped ">
                     <tr>
 
+                        <th>Receta</th>
+                        <th>Combinacion</th>
                         <th>Alimento</th>
                         <th>Categoria</th>
                         <th>Calorias</th>
@@ -773,6 +854,8 @@
                 <table id="domingo4" class="tablarefaccion2 table table-striped table table-hover">
                     <tr>
 
+                        <th>Receta</th>
+                        <th>Combinacion</th>
                         <th>Alimento</th>
                         <th>Categoria</th>
                         <th>Calorias</th>
@@ -794,6 +877,8 @@
                 <table id="domingo5" class="tablacena table table-striped table table-hover">
                     <tr>
 
+                        <th>Receta</th>
+                        <th>Combinacion</th>
                         <th>Alimento</th>
                         <th>Categoria</th>
                         <th>Calorias</th>
@@ -810,6 +895,8 @@
                 <table id="domingo6" class="tablarefaccion3 table table-striped table table-hover">
                     <tr>
 
+                        <th>Receta</th>
+                        <th>Combinacion</th>
                         <th>Alimento</th>
                         <th>Categoria</th>
                         <th>Calorias</th>
@@ -826,6 +913,8 @@
                 <table id="domingo7" class="tablarefaccion4 table table-striped table table-hover">
                     <tr>
 
+                        <th>Receta</th>
+                        <th>Combinacion</th>
                         <th>Alimento</th>
                         <th>Categoria</th>
                         <th>Calorias</th>
@@ -840,18 +929,5 @@
 
 
         <div>
-     <!-- fin del col-md-11 -->   
+     <!-- fin del col-md-11 -->
 </section>
-
-
-
-
-
-
-
-
-
-
-
-
-

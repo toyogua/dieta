@@ -11,17 +11,16 @@
 
     <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/sweetalert.css">
 
-    <script  src="<?php echo base_url();?>assets/js/jquery-3.1.1.min.js"></script>
+    <script  src="<?php echo base_url();?>assets/js/jquery.min.js"></script>
     <script src="<?php echo base_url();?>assets/js/bootstrap.min.js"></script>
     <script src="<?php echo base_url();?>assets/js/tether.min.js"></script>
     <script src="<?php echo base_url();?>assets/js/mdb.min.js"></script>
     <script src="<?php echo base_url();?>assets/js/TweenMax.min.js"></script>
     <script src="<?php echo base_url();?>assets/js/CSSPlugin.min.js"></script>
     <script src="<?php echo base_url();?>assets/js/TweenLite.min.js"></script>
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <!--<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script> -->
     <script type="text/javascript" src="<?php echo base_url('assets/js/categorias.js') ?>"></script>
-    <script type="text/javascript" src="<?php echo base_url('assets/js/choose-your-plate-spanish.js') ?>"></script>
-    <script type="text/javascript" src="<?php echo base_url('assets/js/cyp.js') ?>"></script>
+
 
 
 
@@ -51,9 +50,9 @@
                 <li class="nav-item">
                     <a class="nav-link" id="linkpaciente" href="<?php echo base_url(); ?>paciente">Paciente</a>
                 </li>
-                
+
             </ul>
-            
+
         </div>
     </div>
 </nav>

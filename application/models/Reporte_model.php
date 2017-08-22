@@ -4,29 +4,28 @@ class Reporte_model extends CI_Model
 
     public function busquedaplatos($idpaciente, $dia, $plato)
     {
-         
 
+      $this->db->distinct();
+      $this->db->select('
 
-         $this->db->distinct();
-        $this->db->select('
-           
-            dietaplato.alimento as dietaalimento,
-            dietaplato.dia as dia,
-            dietaplato.plato as plato,
+      dietaplato.idreceta as idreceta,
+      dietaplato.nombrereceta as nombrereceta,
+      dietaplato.alimento as dietaalimento,
+      dietaplato.dia as dia,
+      dietaplato.plato as plato,
 
-            alimentos.IDAlimento as idalimento,
-            alimentos.Nombre as alimento,
-            alimentos.Calorias as calorias,
-            
-            categoria_alimentos.IDCategoria as idcategoria,
-            categoria_alimentos.Nombre as nombrecategoria,
-            
-           
-        ');
+      alimentos.IDAlimento as idalimento,
+      alimentos.Nombre as alimento,
+      alimentos.Calorias as calorias,
+
+      categoria_alimentos.IDCategoria as idcategoria,
+      categoria_alimentos.Nombre as nombrecategoria,
+
+      ');
         $this->db->from('dietaplato');
         $this->db->join('alimentos', 'alimentos.IDAlimento = dietaplato.alimento');
         $this->db->join('categoria_alimentos', 'categoria_alimentos.IDCategoria = dietaplato.categoria');
-       
+
  		$this->db->where('dietaplato.paciente', $idpaciente);
  		$this->db->where('dietaplato.dia', $dia);
  		$this->db->where('dietaplato.plato', $plato);
@@ -44,11 +43,14 @@ class Reporte_model extends CI_Model
 
     }
 
-    public function generarreportepdf($idpaciente){
+    public function generarreportepdf($idpaciente)
+    {
 
         $this->db->distinct();
         $this->db->select('
-           
+
+            dietaplato.nombrereceta as receta,
+            dietaplato.combinacion as combinacion,
             dietaplato.alimento as dietaalimento,
             dietaplato.dia as dia,
             dietaplato.plato as plato,
@@ -56,14 +58,14 @@ class Reporte_model extends CI_Model
             alimentos.IDAlimento as idalimento,
             alimentos.Nombre as alimento,
             alimentos.Calorias as calorias,
-            
+
             categoria_alimentos.IDCategoria as idcategoria,
             categoria_alimentos.Nombre as nombrecategoria,
-            
+
             paciente.IDPAciente as idpaciente,
             paciente.Nombre as nombrepaciente
-            
-           
+
+
         ');
         $this->db->from('dietaplato');
         $this->db->join('alimentos', 'alimentos.IDAlimento = dietaplato.alimento');
@@ -72,20 +74,15 @@ class Reporte_model extends CI_Model
 
         $this->db->where('dietaplato.paciente', $idpaciente);
 
-
-
-
-
         $query = $this->db->get();
 
-        if ($query->num_rows() < 1) {
+        if ($query->num_rows() < 1)
+        {
             return FALSE;
         }
 
         return $query->result();
         return TRUE;
-
-
 
     }
 

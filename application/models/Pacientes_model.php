@@ -7,7 +7,7 @@
  */
 
 class Pacientes_model extends CI_Model{
-    
+
     public function todos_pacientes(){
 
         $query = $this->db-> query('SELECT IDPaciente, Nombre FROM paciente');
@@ -21,38 +21,30 @@ class Pacientes_model extends CI_Model{
             $query->free_result();
             return $arrDatos;
         }
-        
+
     }
 
-    public function get_paciente_info($idpaciente){
+    public function get_paciente_info($idpaciente)
+    {
 
-         $this->db->distinct();
+        $this->db->distinct();
         $this->db->select('
-           
-            IDPAciente ,
-           Nombre 
-            
-           
+           IDPAciente ,
+           Nombre
+
         ');
         $this->db->from('paciente');
-       
-
         $this->db->where('IDPAciente', $idpaciente);
-
-
-
-
-
         $query = $this->db->get();
-
-        if ($query->num_rows() < 1) {
+        if ($query->num_rows() < 1)
+        {
             return FALSE;
         }
 
         return $query->row();
         return TRUE;
     }
-    
+
 
 }
 

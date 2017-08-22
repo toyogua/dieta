@@ -13,24 +13,25 @@ class Admin extends CI_Controller{
         parent::__construct();
         $this->load->model('Reporte_model');
         $this->load->model('Pacientes_model');
-        
+
 	}
-    
+
     public function index(){
-    
+
         $data['main_view'] = "admin/reportes_pacientes";
-        
+
         $this->load->view('layouts/main', $data);
     }
 
-    public function buscardatospaciente(){
+    public function buscardatospaciente()
+		{
 
     	 $idpaciente = $this->input->post('idpaciente');
 
     	 $dia = $this->input->post('dia');
 
     	 $plato = $this->input->post('elplato');
-        
+
         $data = $this->Reporte_model->busquedaplatos($idpaciente, $dia, $plato);
 
         echo json_encode($data);
@@ -38,13 +39,9 @@ class Admin extends CI_Controller{
     }
 
 
-    public function reportepdf($id){
-
-
-
-        //echo $idpaciente;
-
-        $this->load->library('Pdf');
+    public function reportepdf($id)
+		{
+				$this->load->library('Pdf');
         $pdf = new Pdf('L', 'mm', 'A4', true, 'UTF-8', false);
         $pdf->setPageOrientation('L');
         $pdf->SetCreator(PDF_CREATOR);
@@ -89,107 +86,100 @@ class Admin extends CI_Controller{
         // Este método tiene varias opciones, consulta la documentación para más información.
         $pdf->AddPage();
 
-
-
-
-
-        $idpaciente = $id;
+				$idpaciente = $id;
         $nombre = $this->Pacientes_model->get_paciente_info($idpaciente);
+				$pacienteinfo = $this->Reporte_model->generarreportepdf($idpaciente);
 
+				$content = '';
 
-
-        $pacienteinfo = $this->Reporte_model->generarreportepdf($idpaciente);
-
-
-
-        $content = '';
- 
         $content .= '
         <div class="row">
             <div class="col-md-12">
             <h1 style="text-align:center;">'.$nombre->Nombre.'</h1>
-                
- 
+
+
         <table border="1" cellpadding="5">
         <thead>
           <tr>
-            <th>ALIMENTO</th>
+						<th>RECETA</TH>
+						<th>COMBINACION</TH>
+						<th>ALIMENTO</th>
             <th>CATEGORIA</th>
             <th>CALORIAS</th>
             <th>PLATO</th>
             <th>DIA</th>
-            
+
           </tr>
         </thead>
     ';
 
 
 
-        if (is_array($pacienteinfo)){
+        if (is_array($pacienteinfo))
+				{
             foreach ( $pacienteinfo as $paciente )
             {
-                if ($paciente->dia=="lunes") {
+                if ($paciente->dia=="lunes")
+								{
 
                     //$color= '#f5f5f5';
 
                 }
-                if ($paciente->plato==1) {
+                if ($paciente->plato==1)
+								{
                     $plato = "Desayuno";
                     $color= '#f5f5f5';
                 }
-                if ($paciente->plato==2) {
+                if ($paciente->plato==2)
+								{
                     $plato = "Refaccion 1";
                     $color= '#fbb2b2';
                 }
-                if ($paciente->plato==3) {
+                if ($paciente->plato==3)
+								{
                     $plato = "Almuerzo";
                     $color= '#91C0D4';
                 }
-                if ($paciente->plato==4) {
+                if ($paciente->plato==4)
+								{
                     $plato = "Refaccion 2";
                     $color= '#fbb2b2';
                 }
-                if ($paciente->plato==5) {
+                if ($paciente->plato==5)
+								{
                     $plato = "Cena";
                     $color= '#f5f5f5';
                 }
-                if ($paciente->plato==6) {
+                if ($paciente->plato==6)
+								{
                     $plato = "Refaccion 3";
                     $color= '#91C0D4';
                 }
-                if ($paciente->plato==7) {
+                if ($paciente->plato==7)
+								{
                     $plato = "Refaccion 4";
                      $color= '#f5f5f5';
                 }
-  
+
         $content .= '
         <tr bgcolor="'.$color.'">
-            <td>'.$paciente->alimento.'</td>
+
+						<td>'.$paciente->receta.'</td>
+						<td>'.$paciente->combinacion.'</td>
+						<td>'.$paciente->alimento.'</td>
             <td>'.$paciente->nombrecategoria.'</td>
             <td>'.$paciente->calorias.'</td>
             <td>'.$plato.'</td>
             <td>'.$paciente->dia.'</td>
-            
+
         </tr>
     ';
 
-            }//fin del foreach
+      		}//fin del foreach
 
-             
+				}//fin del if is array
 
-
-        }//fin del if is array
-
-        
-                    
-                  
-
-        
-        
-
-       $content .= '</table>';
- 
-    
+			$content .= '</table>';
 
 //                 Imprimimos el texto con writeHTMLCell()
         $pdf->writeHTMLCell($w = 0, $h = 0, $x = '', $y = '', $content, $border = 0, $ln = 1, $fill = 0, $reseth = true, $align = '', $autopadding = true);
