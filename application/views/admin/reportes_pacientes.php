@@ -30,8 +30,8 @@
 
             <div class="btn btn-secondary btn-sm"><a class="dias" data-linkdia="lunes" href="">Lunes</a></div>
             <div class="row">
-                <div class="col-md-3">
-                    <button class="platosreporte btn btn-primary btn-sm" data-dia="lunes" data-idplato="1">Desayuno</button>
+                <div class="col-md-5">
+                    <button class="platosreporte btn btn-primary btn-sm " data-dia="lunes" data-idplato="1">Desayuno</button>
                         <div>
                         <table id="lunes1" class="tabladesayuno table table-striped ">
                             <tr>
@@ -46,7 +46,7 @@
                         </div>
 
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-5">
                     <button class="platosreporte btn btn-primary btn-sm" data-dia="lunes" data-idplato="2">Refaccion 1</button>
 
                         <table id="lunes2"class="tablarefaccion1 table table-striped ">
@@ -61,7 +61,7 @@
                         </table>
 
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-5">
                     <button class="platosreporte btn btn-primary btn-sm" data-dia="lunes" data-idplato="3">Almuerzo</button>
                         <table id="lunes3" class="tablaalmuerzo table table-striped ">
                             <tr>
@@ -77,7 +77,7 @@
 
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-5">
                     <button class="platosreporte btn btn-primary btn-sm" data-dia="lunes" data-idplato="4">Refaccion 2</button>
 
                         <table id="lunes4" class="tablarefaccion2 table table-striped table table-hover">
@@ -99,7 +99,7 @@
 
             <div class="row">
 
-               <div class="col-md-3">
+               <div class="col-md-5">
 
                      <button class="platosreporte btn btn-primary btn-sm" data-dia="lunes" data-idplato="5">Cena</button>
 
@@ -117,7 +117,7 @@
 
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-5">
 
                      <button class="platosreporte btn btn-primary btn-sm" data-dia="lunes" data-idplato="6">Refaccion 3</button>
 
@@ -135,7 +135,7 @@
 
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-5">
 
                      <button class="platosreporte btn btn-primary btn-sm" data-dia="lunes" data-idplato="7">Refaccion 4</button>
 
@@ -161,7 +161,7 @@
 
         <div class="btn btn-secondary btn-sm"><a class="dias" data-linkdia="martes" href="">Martes</a></div>
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-5">
                 <button class="platosreporte btn btn-primary btn-sm" data-dia="martes" data-idplato="1">Desayuno</button>
                 <div>
                     <table id="martes1" class="tabladesayuno table table-striped ">
@@ -177,7 +177,7 @@
                 </div>
 
             </div>
-            <div class="col-md-3">
+            <div class="col-md-5">
                 <button class="platosreporte btn btn-primary btn-sm" data-dia="martes" data-idplato="2">Refaccion 1</button>
 
                 <table id="martes2"class="tablarefaccion1 table table-striped ">
@@ -192,7 +192,7 @@
                 </table>
 
             </div>
-            <div class="col-md-3">
+            <div class="col-md-5">
                 <button class="platosreporte btn btn-primary btn-sm" data-dia="martes" data-idplato="3">Almuerzo</button>
                 <table id="martes3" class="tablaalmuerzo table table-striped ">
                     <tr>
@@ -208,7 +208,7 @@
 
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-5">
                 <button class="platosreporte btn btn-primary btn-sm" data-dia="martes" data-idplato="4">Refaccion 2</button>
 
                 <table id="martes4" class="tablarefaccion2 table table-striped table table-hover">
@@ -230,7 +230,7 @@
 
         <div class="row">
 
-            <div class="col-md-3">
+            <div class="col-md-5">
 
                 <button class="platosreporte btn btn-primary btn-sm" data-dia="martes" data-idplato="5">Cena</button>
 
@@ -248,7 +248,7 @@
 
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-5">
 
                 <button class="platosreporte btn btn-primary btn-sm" data-dia="martes" data-idplato="6">Refaccion 3</button>
 
@@ -266,7 +266,7 @@
 
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-5">
 
                 <button class="platosreporte btn btn-primary btn-sm" data-dia="martes" data-idplato="7">Refaccion 4</button>
 
@@ -290,7 +290,7 @@
 
         <div class="btn btn-secondary btn-sm"><a class="dias" data-linkdia="miercoles" href="">Miercoles</a></div>
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-5">
                 <button class="platosreporte btn btn-primary btn-sm" data-dia="miercoles" data-idplato="1">Desayuno</button>
                 <div>
                     <table id="miercoles1" class="tabladesayuno table table-striped ">
@@ -306,7 +306,7 @@
                 </div>
 
             </div>
-            <div class="col-md-3">
+            <div class="col-md-5">
                 <button class="platosreporte btn btn-primary btn-sm" data-dia="miercoles" data-idplato="2">Refaccion 1</button>
 
                 <table id="miercoles2"class="tablarefaccion1 table table-striped ">
@@ -321,7 +321,7 @@
                 </table>
 
             </div>
-            <div class="col-md-3">
+            <div class="col-md-5">
                 <button class="platosreporte btn btn-primary btn-sm" data-dia="miercoles" data-idplato="3">Almuerzo</button>
                 <table id="miercoles3" class="tablaalmuerzo table table-striped ">
                     <tr>
@@ -337,7 +337,7 @@
 
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-5">
                 <button class="platosreporte btn btn-primary btn-sm" data-dia="miercoles" data-idplato="4">Refaccion 2</button>
 
                 <table id="miercoles4" class="tablarefaccion2 table table-striped table table-hover">
@@ -359,7 +359,7 @@
 
         <div class="row">
 
-            <div class="col-md-3">
+            <div class="col-md-5">
 
                 <button class="platosreporte btn btn-primary btn-sm" data-dia="miercoles" data-idplato="5">Cena</button>
 
@@ -377,7 +377,7 @@
 
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-5">
 
                 <button class="platosreporte btn btn-primary btn-sm" data-dia="miercoles" data-idplato="6">Refaccion 3</button>
 
@@ -395,7 +395,7 @@
 
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-5">
 
                 <button class="platosreporte btn btn-primary btn-sm" data-dia="miercoles" data-idplato="7">Refaccion 4</button>
 
@@ -418,7 +418,7 @@
 
         <div class="btn btn-secondary btn-sm"><a class="dias" data-linkdia="jueves" href="">Jueves</a></div>
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-5">
                 <button class="platosreporte btn btn-primary btn-sm" data-dia="jueves" data-idplato="1">Desayuno</button>
                 <div>
                     <table id="jueves1" class="tabladesayuno table table-striped ">
@@ -434,7 +434,7 @@
                 </div>
 
             </div>
-            <div class="col-md-3">
+            <div class="col-md-5">
                 <button class="platosreporte btn btn-primary btn-sm" data-dia="jueves" data-idplato="2">Refaccion 1</button>
 
                 <table id="jueves2"class="tablarefaccion1 table table-striped ">
@@ -449,7 +449,7 @@
                 </table>
 
             </div>
-            <div class="col-md-3">
+            <div class="col-md-5">
                 <button class="platosreporte btn btn-primary btn-sm" data-dia="jueves" data-idplato="3">Almuerzo</button>
                 <table id="jueves3" class="tablaalmuerzo table table-striped ">
                     <tr>
@@ -465,7 +465,7 @@
 
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-5">
                 <button class="platosreporte btn btn-primary btn-sm" data-dia="jueves" data-idplato="4">Refaccion 2</button>
 
                 <table id="jueves4" class="tablarefaccion2 table table-striped table table-hover">
@@ -487,7 +487,7 @@
 
         <div class="row">
 
-            <div class="col-md-3">
+            <div class="col-md-5">
 
                 <button class="platosreporte btn btn-primary btn-sm" data-dia="jueves" data-idplato="5">Cena</button>
 
@@ -505,7 +505,7 @@
 
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-5">
 
                 <button class="platosreporte btn btn-primary btn-sm" data-dia="jueves" data-idplato="6">Refaccion 3</button>
 
@@ -523,7 +523,7 @@
 
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-5">
 
                 <button class="platosreporte btn btn-primary btn-sm" data-dia="jueves" data-idplato="7">Refaccion 4</button>
 
@@ -546,7 +546,7 @@
 
         <div class="btn btn-secondary btn-sm"><a class="dias" data-linkdia="viernes" href="">Viernes</a></div>
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-5">
                 <button class="platosreporte btn btn-primary btn-sm" data-dia="viernes" data-idplato="1">Desayuno</button>
                 <div>
                     <table id="viernes1" class="tabladesayuno table table-striped ">
@@ -562,7 +562,7 @@
                 </div>
 
             </div>
-            <div class="col-md-3">
+            <div class="col-md-5">
                 <button class="platosreporte btn btn-primary btn-sm" data-dia="viernes" data-idplato="2">Refaccion 1</button>
 
                 <table id="viernes2"class="tablarefaccion1 table table-striped ">
@@ -577,7 +577,7 @@
                 </table>
 
             </div>
-            <div class="col-md-3">
+            <div class="col-md-5">
                 <button class="platosreporte btn btn-primary btn-sm" data-dia="viernes" data-idplato="3">Almuerzo</button>
                 <table id="viernes3" class="tablaalmuerzo table table-striped ">
                     <tr>
@@ -593,7 +593,7 @@
 
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-5">
                 <button class="platosreporte btn btn-primary btn-sm" data-dia="viernes" data-idplato="4">Refaccion 2</button>
 
                 <table id="viernes4" class="tablarefaccion2 table table-striped table table-hover">
@@ -615,7 +615,7 @@
 
         <div class="row">
 
-            <div class="col-md-3">
+            <div class="col-md-5">
 
                 <button class="platosreporte btn btn-primary btn-sm" data-dia="viernes" data-idplato="5">Cena</button>
 
@@ -633,7 +633,7 @@
 
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-5">
 
                 <button class="platosreporte btn btn-primary btn-sm" data-dia="viernes" data-idplato="6">Refaccion 3</button>
 
@@ -651,7 +651,7 @@
 
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-5">
 
                 <button class="platosreporte btn btn-primary btn-sm" data-dia="viernes" data-idplato="7">Refaccion 4</button>
 
@@ -674,7 +674,7 @@
 
         <div class="btn btn-secondary btn-sm"><a class="dias" data-linkdia="sabado" href="">Sabado</a></div>
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-5">
                 <button class="platosreporte btn btn-primary btn-sm" data-dia="sabado" data-idplato="1">Desayuno</button>
                 <div>
                     <table id="sabado1" class="tabladesayuno table table-striped ">
@@ -690,7 +690,7 @@
                 </div>
 
             </div>
-            <div class="col-md-3">
+            <div class="col-md-5">
                 <button class="platosreporte btn btn-primary btn-sm" data-dia="sabado" data-idplato="2">Refaccion 1</button>
 
                 <table id="sabado2"class="tablarefaccion1 table table-striped ">
@@ -705,7 +705,7 @@
                 </table>
 
             </div>
-            <div class="col-md-3">
+            <div class="col-md-5">
                 <button class="platosreporte btn btn-primary btn-sm" data-dia="sabado" data-idplato="3">Almuerzo</button>
                 <table id="sabado3" class="tablaalmuerzo table table-striped ">
                     <tr>
@@ -721,7 +721,7 @@
 
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-5">
                 <button class="platosreporte btn btn-primary btn-sm" data-dia="sabado" data-idplato="4">Refaccion 2</button>
 
                 <table id="sabado4" class="tablarefaccion2 table table-striped table table-hover">
@@ -743,7 +743,7 @@
 
         <div class="row">
 
-            <div class="col-md-3">
+            <div class="col-md-5">
 
                 <button class="platosreporte btn btn-primary btn-sm" data-dia="sabado" data-idplato="5">Cena</button>
 
@@ -761,7 +761,7 @@
 
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-5">
 
                 <button class="platosreporte btn btn-primary btn-sm" data-dia="sabado" data-idplato="6">Refaccion 3</button>
 
@@ -779,7 +779,7 @@
 
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-5">
 
                 <button class="platosreporte btn btn-primary btn-sm" data-dia="sabado" data-idplato="7">Refaccion 4</button>
 
@@ -801,7 +801,7 @@
 
         <div class="btn btn-secondary btn-sm"><a class="dias" data-linkdia="domingo" href="">Domingo</a></div>
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-5">
                 <button class="platosreporte btn btn-primary btn-sm" data-dia="domingo" data-idplato="1">Desayuno</button>
                 <div>
                     <table id="domingo1" class="tabladesayuno table table-striped ">
@@ -817,7 +817,7 @@
                 </div>
 
             </div>
-            <div class="col-md-3">
+            <div class="col-md-5">
                 <button class="platosreporte btn btn-primary btn-sm" data-dia="domingo" data-idplato="2">Refaccion 1</button>
 
                 <table id="domingo2"class="tablarefaccion1 table table-striped ">
@@ -832,7 +832,7 @@
                 </table>
 
             </div>
-            <div class="col-md-3">
+            <div class="col-md-5">
                 <button class="platosreporte btn btn-primary btn-sm" data-dia="domingo" data-idplato="3">Almuerzo</button>
                 <table id="domingo3" class="tablaalmuerzo table table-striped ">
                     <tr>
@@ -848,7 +848,7 @@
 
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-5">
                 <button class="platosreporte btn btn-primary btn-sm" data-dia="domingo" data-idplato="4">Refaccion 2</button>
 
                 <table id="domingo4" class="tablarefaccion2 table table-striped table table-hover">
@@ -870,7 +870,7 @@
 
         <div class="row">
 
-            <div class="col-md-3">
+            <div class="col-md-5">
 
                 <button class="platosreporte btn btn-primary btn-sm" data-dia="domingo" data-idplato="5">Cena</button>
 
@@ -888,7 +888,7 @@
 
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-5">
 
                 <button class="platosreporte btn btn-primary btn-sm" data-dia="domingo" data-idplato="6">Refaccion 3</button>
 
@@ -906,7 +906,7 @@
 
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-5">
 
                 <button class="platosreporte btn btn-primary btn-sm" data-dia="domingo" data-idplato="7">Refaccion 4</button>
 
