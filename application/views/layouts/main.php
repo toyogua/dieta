@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/mdb.min.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/style.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/cyp.css">
-    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/misestilos.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/misestilos.css?v2">
 
     <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/sweetalert.css">
 
