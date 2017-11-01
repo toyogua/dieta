@@ -33,20 +33,20 @@ $(document).ready(function(){
         $(this).hide();
         $("#salir").show();
 
-        var contenido = "";
-        contenido += '<span class="bigBox-fondo "></span>';
-        contenido +='<div class="bigBox-contenedor"  align="center">';
-        contenido +='<span class="bigBox-Entrada"><input  class="text-accent-2" id="capturapaciente" placeholder="Ingresa tu nombre" type="text"></span>';
-        contenido +='<span  id="resultadoBusqueda"></span>';
-        contenido +='<button class="bigBox-Boton btn btn-default">Aceptar</button>';
-        contenido +='</div>';
-
-        $("#caja").append(contenido);
-
-
-
-        $("#resultadoBusqueda").hide();
-        $(".bigBox-Boton").hide();
+        // var contenido = "";
+        // contenido += '<span class="bigBox-fondo "></span>';
+        // contenido +='<div class="bigBox-contenedor"  align="center">';
+        // contenido +='<span class="bigBox-Entrada"><input  class="text-accent-2" id="capturapaciente" placeholder="Ingresa tu nombre" type="text"></span>';
+        // contenido +='<span  id="resultadoBusqueda"></span>';
+        // contenido +='<button class="bigBox-Boton btn btn-default">Aceptar</button>';
+        // contenido +='</div>';
+        //
+        // $("#caja").append(contenido);
+        //
+        //
+        //
+        // $("#resultadoBusqueda").hide();
+        // $(".bigBox-Boton").hide();
 
         var consulta;
         //hacemos focus al campo de búsqueda
@@ -81,10 +81,10 @@ $(document).ready(function(){
             $(".bigBox-Boton").show();
         });
 
-        $(".bigBox-Boton").live("click", function () {
+        $("#btnconfirmarpaciente").click( function () {
 
-            $(".bigBox-fondo").remove();
-            $(".bigBox-contenedor").remove();
+            // $(".bigBox-fondo").remove();
+            // $(".bigBox-contenedor").remove();
             $("#resultadoBusqueda").remove();
 
             $("#bienvenidapaciente").show();
@@ -163,12 +163,12 @@ $(document).ready(function(){
 
                 $.each(result, function (i, val) {
 
-                    $("#contenedor_categorias").append('<ul data-id=' + val.IDCategoria + ' id=categoria class=list-group-item>' + val.Nombre + '</ul>');
+                    $("#contenedor_categorias").append('<p data-id=' + val.IDCategoria + ' id=categoria class=list-group-item>' + val.Nombre + '</p>');
 
                 });
             });
             $(this).hide();
-            $("#contenedor_categorias").prepend('<a href="" class="ocultar custom-select">Ocultar</a>');
+            $("#contenedor_categorias").prepend('<a href="" class="ocultar custom-select btn-block">Ocultar</a>');
 
             $(".ocultar").live('click', function () {
                 $(this).remove();
@@ -180,43 +180,43 @@ $(document).ready(function(){
         }
     }); //FIN #cargar_json(cargar categorias)
 
-    $("#categoria").live('click', function(){
-
-        //var id =
-        //corregido el bug de sumar 1 al id de la categoria
-        var dato = $(this).data("id");
-
-       idcategoria =dato;
-
-        // console.log(dato);
-
-        $.ajax({
-            type: "POST",
-            url: baseurl+'paciente/alimentos_json',
-            dataType: 'json',
-            data: {id: dato},
-            success: function(res){console.log(res);
-                if (res) {
-                    $.each(res, function ( j, val) {
-
-                        //corregido el bug de la variable para asignar el id de alimento
-                        $("#contenedor_subcategorias").append('<li data-id=' + val.IDAlimento + ' data-imagen='+ val.img + ' data-categoria=' + val.IDCategoria + ' data-calorias=' + val.Calorias + ' id=alimento class=list-group-item>' + val.Nombre + ', ' + val.Calorias + '</li>').hover(function(){
-
-    $(this).css("cursor", "pointer");
-    }, function(){
-    $(this).css("cursor", "hand");
-});
-                    });
-
-                }
-            }
-        });
-            $("li#alimento").hide();
-            $('ul#categoria').hide();
-            $(".ocultar").hide();
-            $("#cargar_json").show();
-
-    });//FIN #categoria (cargar_subcategorias)
+//     $("#categoria").live('click', function(){
+//
+//         //var id =
+//         //corregido el bug de sumar 1 al id de la categoria
+//         var dato = $(this).data("id");
+//
+//        idcategoria =dato;
+//
+//         // console.log(dato);
+//
+//         $.ajax({
+//             type: "POST",
+//             url: baseurl+'paciente/alimentos_json',
+//             dataType: 'json',
+//             data: {id: dato},
+//             success: function(res){console.log(res);
+//                 if (res) {
+//                     $.each(res, function ( j, val) {
+//
+//                         //corregido el bug de la variable para asignar el id de alimento
+//                         $("#contenedor_subcategorias").append('<li data-id=' + val.IDAlimento + ' data-imagen='+ val.img + ' data-categoria=' + val.IDCategoria + ' data-calorias=' + val.Calorias + ' id=alimento class=list-group-item>' + val.Nombre + ', ' + val.Calorias + '</li>').hover(function(){
+//
+//     $(this).css("cursor", "pointer");
+//     }, function(){
+//     $(this).css("cursor", "hand");
+// });
+//                     });
+//
+//                 }
+//             }
+//         });
+//             $("li#alimento").hide();
+//             $('ul#categoria').hide();
+//             $(".ocultar").hide();
+//             $("#cargar_json").show();
+//
+//     });//FIN #categoria (cargar_subcategorias)
 
 
     //cuando se de click sobre cada alimento
@@ -1376,7 +1376,175 @@ $(document).ready(function(){
 
         });
 
+    $("#tabcategorias").click(function () {
 
+
+        $.post(baseurl + 'paciente/categorias_json', function (data) {
+
+            var result = JSON.parse(data);
+
+            console.log(result);
+
+            $.each(result, function (i, val) {
+
+                $("#espaciocategorias").append('<li data-toggle="modal" data-target="#modalalimentos" data-id=' + val.IDCategoria + ' class="badge badge-pill purple btn btn-bg" id=categoria >' + val.Nombre + '</li>').hover(function () {
+
+                    $(this).css("cursor", "pointer");
+                }, function () {
+                    $(this).css("cursor", "hand");
+
+                });
+
+
+            });
+
+            $("#tabcategorias").addClass("disabled");
+
+        });
+    });
+
+
+    $("#categoria").live('click', function() {
+
+        var dato = $(this).data("id");
+
+        idcategoria = dato;
+
+        $.ajax({
+            type: "POST",
+            url: baseurl + 'paciente/alimentos_json',
+            dataType: 'json',
+            data: {id: dato},
+            success: function (res) {
+                console.log(res);
+                if (res) {
+
+
+                    $.each(res, function (j, val) {
+
+                        $("#vienenalimentos").append('<li data-id=' + val.IDAlimento + ' data-imagen=' + val.img + ' data-categoria=' + val.IDCategoria + ' data-calorias=' + val.Calorias + ' id=alimento class="list-group-item">' + val.Nombre + ', ' + val.Calorias + '</li>').hover(function () {
+
+                            $(this).css("cursor", "pointer");
+                        }, function () {
+                            $(this).css("cursor", "hand");
+
+                        });
+                    });
+
+                }
+            }
+        });
+
+
+        var modalsubcategoria = "";
+        modalsubcategoria += '<div class="modal fade" id="modalalimentos">';
+        modalsubcategoria += '<div class="modal-dialog" role="document">';
+        modalsubcategoria += '<div class="modal-content">';
+        modalsubcategoria += '<div class="modal-header text-sm-center-center">';
+        modalsubcategoria += '<h5 class="modal-title font-weight-bold ">Elige tus alimentos para agregar a tu plato</h5>';
+        modalsubcategoria += '<button type="button" class="close" data-dismiss="modal" aria-label="Close">';
+        modalsubcategoria += '<span id="cerrarmodalalimentos" aria-hidden="true">&times;</span>';
+        modalsubcategoria += '</button>';
+        modalsubcategoria += '</div>';
+
+        modalsubcategoria += '<div class="modal-body" >';
+        // modalsubcategoria += '<div class="md-form">';
+        // modalsubcategoria += '<i class="fa fa-user prefix"></i>';
+        // modalsubcategoria += '<input type="text" placeholder="Nombre" id="capturapaciente" class="text-center form-control"> </input>';
+        //modalsubcategoria += '</div>';
+        modalsubcategoria += '<span>';
+        modalsubcategoria += '<ul class="font-weight-bold" id="vienenalimentos"></ul>';
+        modalsubcategoria += '</span>';
+        modalsubcategoria += '</div>';
+
+        modalsubcategoria += '<div class="modal-footer">';
+        modalsubcategoria += '<button type="button" id="btnconfirmaralimentos" class="btn btn-success btn-block" data-dismiss="modal">Listo</button>';
+        modalsubcategoria += '</div>';
+        modalsubcategoria += '</div>';
+        modalsubcategoria += '</div>';
+        modalsubcategoria += '</div>';
+
+        $("#espaciocategorias").append(modalsubcategoria);
+
+
+    });
+
+    //si se cierra la ventana modal elimina los alimentos mostrados anteriormente
+    $("#cerrarmodalalimentos").live('click', function () {
+        $("#modalalimentos").remove();
+    });
+
+    //si se presiona el boton de listo en la ventana modal se eliminan los alimentos mostrados anteriormen
+    $("#btnconfirmaralimentos").live('click', function () {
+        $("#modalalimentos").remove();
+    });
+
+    //cuando se de click sobre un plato determinado
+    $(".opcion-plato").click( function () {
+
+        var idseleccion = $(this).data("id");
+        var combinacion = $(this).data("nombre");
+
+        idselecciongr = idseleccion;
+        nombrecombinacion = combinacion;
+
+        var url = "assets/img/plato.png";
+        var url2 = "assets/img/proteinasproteinas.png";
+        var url3 = "assets/img/verdurasverduras.png";
+        var url4 = "assets/img/verdurasverdurasproteinasproteinas.png";
+
+
+        if (idselecciongr == 1) {
+            $("#fondoprincipal").attr('src', url);
+
+        }
+        if (idselecciongr == 2) {
+            $("#fondoprincipal").attr('src', url2);
+
+        }
+
+        if (idselecciongr == 3) {
+            $("#fondoprincipal").attr('src', url3);
+
+        }
+
+        if (idselecciongr == 4) {
+            $("#fondoprincipal").attr('src', url4);
+
+        }
+
+
+        console.log(idseleccion);
+        console.log(combinacion);
+    })
+
+    //capturamos el dia cuando se selecciona alguno de ellos
+    $(".opciondia").click( function () {
+        var dia = $(this).data("id");
+        iddia = dia;
+
+        $(this).addClass("disabled")
+        console.log(dia);
+
+    })
+
+    //capturamos el plato que se haya seleccionado
+    $(".opcplato").click( function () {
+        var that = this;
+
+        var nombreplato = $(this).data("nombre");
+
+        var idplato = $(this).data("id");
+        idplatos = idplato;
+
+        that.disabled = true;
+
+        $(this).addClass("disabled");
+
+        console.log(idplato);
+
+
+    })
 
 
 

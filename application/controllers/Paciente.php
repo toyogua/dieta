@@ -78,11 +78,11 @@ class Paciente extends CI_Controller
                 {
                     ?>
 
-                 <li  id="respuesta" >
+                 <ul  id="respuesta" class="text-center" >
 
-                     <a class="respaciente cargarpaciente" data-id="<?php echo $fila->IDPaciente ?>" data-nombre="<?php echo $fila->Nombre ?>" ><?php echo $fila->Nombre ?></a>
+                     <li class="list-group-item respaciente cargarpaciente" data-id="<?php echo $fila->IDPaciente ?>" data-nombre="<?php echo $fila->Nombre ?>" ><?php echo $fila->Nombre ?></li>
 
-                 </li>
+                 </ul>
 
 
                     <?php
