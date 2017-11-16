@@ -25,6 +25,7 @@ class Paciente extends CI_Controller
         $data['categorias'] = $this->Categorias_model->categorias();
         $data['main_view'] = "pacientes/inicio_paciente_view";
 
+
         $this->load->view('layouts/main', $data);
     }
 

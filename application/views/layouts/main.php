@@ -6,20 +6,22 @@
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/mdb.min.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/style.css">
-    <link rel="stylesheet" href="<?php echo base_url();?>assets/css/cyp.css">
+
     <link rel="stylesheet" href="<?php echo base_url();?>assets/css/misestilos.css?v2">
 
     <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/css/sweetalert.css">
 
-    <script  src="<?php echo base_url();?>assets/js/jquery.min.js"></script>
+<!--    <script  src="--><?php //echo base_url();?><!--assets/js/jquery.min.js"></script>-->
     <script  src="<?php echo base_url();?>assets/js/jquery-3.1.1.min.js"></script>
-    <script src="<?php echo base_url();?>assets/js/bootstrap.min.js"></script>
+<!--    <script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>-->
     <script src="<?php echo base_url();?>assets/js/tether.min.js"></script>
+    <script src="<?php echo base_url();?>assets/js/bootstrap.min.js"></script>
+
     <script src="<?php echo base_url();?>assets/js/mdb.min.js"></script>
     <script src="<?php echo base_url();?>assets/js/TweenMax.min.js"></script>
     <script src="<?php echo base_url();?>assets/js/CSSPlugin.min.js"></script>
     <script src="<?php echo base_url();?>assets/js/TweenLite.min.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script> 
+<!--    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script> -->
     <script type="text/javascript" src="<?php echo base_url('assets/js/categorias.js') ?>"></script>
 
 
@@ -32,6 +34,7 @@
 </head>
 
 <body>
+
 
 <!--Navbar-->
 <nav class="navbar navbar-toggleable-md navbar-dark green">

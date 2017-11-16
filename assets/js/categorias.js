@@ -19,6 +19,9 @@ var alimentos = {
     listos: []
 };
 
+var clonados = {
+    clonlistos: []
+};
 var idselecciongr = 0;
 var nombrecombinacion = "";
 
@@ -68,7 +71,8 @@ $(document).ready(function(){
             }
         });
 
-        $(".respaciente").live("click", function(e){
+        $(document).on("click", ".respaciente", function (e) {
+
             e.preventDefault();
             var idpaciente = $(this).data("id");
             var nombrepaciente = $(this).data("nombre");
@@ -220,7 +224,8 @@ $(document).ready(function(){
 
 
     //cuando se de click sobre cada alimento
-    $("#alimento").live('click', function(){
+    $(document).on("click", "#alimento", function () {
+    //$("#alimento").live('click', function(){
 
         //var idalimento =
         //corregido el bug de sumar 1 al id del alimento
@@ -258,17 +263,125 @@ $(document).ready(function(){
 
 
                     //cada alimento es agregado al ojbeto json
-                    alimentos.listos.push({
-                        "idcombinacion" : idselecciongr,
-                        "nombrecombinacion" : nombrecombinacion,
-                        "idalimento"    : id,
-                        "idcategoria"   : idcategoria,
-                        "idpaciente"    : actualpaciente,
-                        "iddia"         : iddia,
-                        "idplato"       : idplatos
+                    // alimentos.listos.push({
+                    //     "idcombinacion" : idselecciongr,
+                    //     "nombrecombinacion" : nombrecombinacion,
+                    //     "idalimento"    : id,
+                    //     "idcategoria"   : idcategoria,
+                    //     "idpaciente"    : actualpaciente,
+                    //     "idplato"       : idplatos,
+                    //     "iddia"         : iddia
+                    //
+                    //
+                    // });
+
+                    //$( '.checkdias' ).on( 'click', function() {
+                    if ($("#oplunes").prop('checked')) {
+
+                        alimentos.listos.push({
+                            "idcombinacion": idselecciongr,
+                            "nombrecombinacion": nombrecombinacion,
+                            "idalimento": id,
+                            "idcategoria": idcategoria,
+                            "idpaciente": actualpaciente,
+                            "idplato": idplatos,
+                            "iddia": "Lunes"
 
 
-                    });
+                        });
+
+                    }
+                    if ($("#opmartes").prop('checked')) {
+
+                        alimentos.listos.push({
+                            "idcombinacion": idselecciongr,
+                            "nombrecombinacion": nombrecombinacion,
+                            "idalimento": id,
+                            "idcategoria": idcategoria,
+                            "idpaciente": actualpaciente,
+                            "idplato": idplatos,
+                            "iddia": "Martes"
+
+
+                        });
+
+                    }
+                    if ($("#opmiercoles").prop('checked')) {
+
+                        alimentos.listos.push({
+                            "idcombinacion": idselecciongr,
+                            "nombrecombinacion": nombrecombinacion,
+                            "idalimento": id,
+                            "idcategoria": idcategoria,
+                            "idpaciente": actualpaciente,
+                            "idplato": idplatos,
+                            "iddia": "Miercoles"
+
+
+                        });
+
+                    }
+                    if ($("#opjueves").prop('checked')) {
+
+                        alimentos.listos.push({
+                            "idcombinacion": idselecciongr,
+                            "nombrecombinacion": nombrecombinacion,
+                            "idalimento": id,
+                            "idcategoria": idcategoria,
+                            "idpaciente": actualpaciente,
+                            "idplato": idplatos,
+                            "iddia": "Jueves"
+
+
+                        });
+
+                    }
+                    if ($("#opviernes").prop('checked')) {
+
+                        alimentos.listos.push({
+                            "idcombinacion": idselecciongr,
+                            "nombrecombinacion": nombrecombinacion,
+                            "idalimento": id,
+                            "idcategoria": idcategoria,
+                            "idpaciente": actualpaciente,
+                            "idplato": idplatos,
+                            "iddia": "Viernes"
+
+
+                        });
+
+                    }
+                    if ($("#opsabado").prop('checked')) {
+
+                        alimentos.listos.push({
+                            "idcombinacion": idselecciongr,
+                            "nombrecombinacion": nombrecombinacion,
+                            "idalimento": id,
+                            "idcategoria": idcategoria,
+                            "idpaciente": actualpaciente,
+                            "idplato": idplatos,
+                            "iddia": "Sabado"
+
+
+                        });
+
+                    }
+                    if ($("#opdomingo").prop('checked')) {
+
+                        alimentos.listos.push({
+                            "idcombinacion": idselecciongr,
+                            "nombrecombinacion": nombrecombinacion,
+                            "idalimento": id,
+                            "idcategoria": idcategoria,
+                            "idpaciente": actualpaciente,
+                            "idplato": idplatos,
+                            "iddia": "Domingo"
+
+
+                        });
+
+                    }
+
 
                     var imagen = archivo;
 
@@ -980,14 +1093,34 @@ $(document).ready(function(){
 
                     var alimentosJSON = JSON.stringify(alimentos.listos);
                     // Realizamos la petición al servidor
-                    $.post(baseurl+'paciente/insertaralimentos', {alimentos: alimentosJSON},
-                        function(respuesta) {
-                            console.log(respuesta);
-                        }).error(
-                        function(){
-                            console.log('Error al ejecutar la petición');
+
+                    // $.post(baseurl+'paciente/insertaralimentos', {alimentos: alimentosJSON},
+                    //     function(respuesta) {
+                    //         console.log(respuesta);
+                    //     }).error(
+                    //     function(){
+                    //         console.log('Error al ejecutar la petición');
+                    //     }
+                    // );
+
+                    $.ajax({
+                        type: "POST",
+                        url: baseurl + 'paciente/insertaralimentos',
+                        dataType: 'json',
+                        data: {alimentos: alimentosJSON},
+                        success: function (res) {
+                            console.log(res);
+                            if (res) {
+
+                                console.log("Alimentos insertados correctamente")
+
+                            }
+                            else {
+                                console.log("Error al enviar los alimentos")
+                            }
                         }
-                    );
+                    });
+
 
                     totalcalorias = 0;
 
@@ -1012,8 +1145,19 @@ $(document).ready(function(){
                     contadorclick=contadorclick+boton;
 
                     $("li#alimento").hide();
+                    $("#capturapaciente").val( '');
+                    //$('input[type=checkbox]').prop('checked', false);
+                    // ($("#oplunes").prop('checked', false));
+                    // ($("#opmartes").prop('checked', false));
+                    $('input[type=checkbox]').each(function()
+                    {
+                        $(this).prop('checked', false);
+                    });
 
-                    if (contadorclick===7){
+                    $(".opcion-plato").removeClass("disabled");
+                    $(".opcplato").removeClass("disabled");
+
+                        if (contadorclick===7){
                         //reiniciamos la variable que contiene el id del día seleccionado
                         iddia= 0;
 
@@ -1049,7 +1193,7 @@ $(document).ready(function(){
 //hacemos focus al campo de búsqueda
         $("#pacientereporte").focus();
         //comprobamos si se pulsa una tecla
-        $("#pacientereporte").keyup(function(e)
+        $("#pacientereporte").keyup(function()
         {
 
           var contenido = "";
@@ -1074,13 +1218,15 @@ $(document).ready(function(){
                         $("#pacientesreportes").html('');
                     };
                 });
+
             }
         });
 
         //cuando se da click sobre el nombre de algun paciente determinado
-        $(".cargarpaciente").live('click', function(e)
+        $(document).on("click", ".cargarpaciente", function ()
+        //$(".cargarpaciente").live('click', function(e)
         {
-            e.preventDefault();
+
             //capturamos el id del paciente
             var idpaciente = $(this).data("id");
             //capturamos el nombre del paciente
@@ -1234,13 +1380,7 @@ $(document).ready(function(){
         $("#receta").val("");
 
 
-    }  else if (iddia==0)
-    {
-
-        swal("Ops", "Necesitas elegir un dia primero", "error");
-        $("#receta").val("");
-
-            }else if (idplatos==0)
+    }  else if (idplatos==0)
             {
 
                     swal("Ops", "Necesitas elegir un plato primero", "error");
@@ -1282,7 +1422,8 @@ $(document).ready(function(){
         });
 
         //cuando se da click sobre alguno de los nombres de las recetas encontradas
-        $(".cargaralimento").live('click', function(e){
+    $(document).on("click", ".cargaralimento", function (e){
+        //$(".cargaralimento").live('click', function(e){
             e.preventDefault();
 
             var idalimento = $(this).data("id");
@@ -1309,19 +1450,129 @@ $(document).ready(function(){
 
                 $.each(res, function (j, val) {
 
-                    //cada alimento se agrega al arreglo
-                    alimentos.listos.push({
 
-                        "idreceta"      : val.idreceta,
-                        "nombrereceta"  : val.nombrereceta,
-                        "idalimento"    : val.idalimento,
-                        "idcategoria"   : val.idcategoria,
-                        "idcombinacion" : idselecciongr,
-                        "nombrecombinacion" : nombrecombinacion,
-                        "idpaciente"    : actualpaciente,
-                        "iddia"         : iddia,
-                        "idplato"       : idplatos
+
+                    if ($("#oplunes").prop('checked')) {
+
+                        alimentos.listos.push({
+                            "idreceta"      : val.idreceta,
+                            "nombrereceta"  : val.nombrereceta,
+                            "idalimento"    : val.idalimento,
+                            "idcategoria"   : val.idcategoria,
+                            "idcombinacion" : idselecciongr,
+                            "nombrecombinacion" : nombrecombinacion,
+                            "idpaciente"    : actualpaciente,
+                            "idplato"       : idplatos,
+                            "iddia"         : "Lunes"
+
+
                         });
+
+                    }
+                    if ($("#opmartes").prop('checked')) {
+
+                        alimentos.listos.push({
+                            "idreceta"      : val.idreceta,
+                            "nombrereceta"  : val.nombrereceta,
+                            "idalimento"    : val.idalimento,
+                            "idcategoria"   : val.idcategoria,
+                            "idcombinacion" : idselecciongr,
+                            "nombrecombinacion" : nombrecombinacion,
+                            "idpaciente"    : actualpaciente,
+                            "idplato"       : idplatos,
+                            "iddia"         : "Martes"
+
+
+                        });
+
+                    }
+                    if ($("#opmiercoles").prop('checked')) {
+
+                        alimentos.listos.push({
+                            "idreceta"      : val.idreceta,
+                            "nombrereceta"  : val.nombrereceta,
+                            "idalimento"    : val.idalimento,
+                            "idcategoria"   : val.idcategoria,
+                            "idcombinacion" : idselecciongr,
+                            "nombrecombinacion" : nombrecombinacion,
+                            "idpaciente"    : actualpaciente,
+                            "idplato"       : idplatos,
+                            "iddia"         : "Miercoles"
+
+
+                        });
+
+                    }
+                    if ($("#opjueves").prop('checked')) {
+
+                        alimentos.listos.push({
+                            "idreceta"      : val.idreceta,
+                            "nombrereceta"  : val.nombrereceta,
+                            "idalimento"    : val.idalimento,
+                            "idcategoria"   : val.idcategoria,
+                            "idcombinacion" : idselecciongr,
+                            "nombrecombinacion" : nombrecombinacion,
+                            "idpaciente"    : actualpaciente,
+                            "idplato"       : idplatos,
+                            "iddia"         : "Jueves"
+
+
+                        });
+
+                    }
+                    if ($("#opviernes").prop('checked')) {
+
+                        alimentos.listos.push({
+                            "idreceta"      : val.idreceta,
+                            "nombrereceta"  : val.nombrereceta,
+                            "idalimento"    : val.idalimento,
+                            "idcategoria"   : val.idcategoria,
+                            "idcombinacion" : idselecciongr,
+                            "nombrecombinacion" : nombrecombinacion,
+                            "idpaciente"    : actualpaciente,
+                            "idplato"       : idplatos,
+                            "iddia"         : "Viernes"
+
+
+                        });
+
+                    }
+                    if ($("#opsabado").prop('checked')) {
+
+                        alimentos.listos.push({
+                            "idreceta"      : val.idreceta,
+                            "nombrereceta"  : val.nombrereceta,
+                            "idalimento"    : val.idalimento,
+                            "idcategoria"   : val.idcategoria,
+                            "idcombinacion" : idselecciongr,
+                            "nombrecombinacion" : nombrecombinacion,
+                            "idpaciente"    : actualpaciente,
+                            "idplato"       : idplatos,
+                            "iddia"         : "Sabado"
+
+
+                        });
+
+                    }
+                    if ($("#opdomingo").prop('checked')) {
+
+                        alimentos.listos.push({
+                            "idreceta"      : val.idreceta,
+                            "nombrereceta"  : val.nombrereceta,
+                            "idalimento"    : val.idalimento,
+                            "idcategoria"   : val.idcategoria,
+                            "idcombinacion" : idselecciongr,
+                            "nombrecombinacion" : nombrecombinacion,
+                            "idpaciente"    : actualpaciente,
+                            "idplato"       : idplatos,
+                            "iddia"         : "Domingo"
+
+
+                        });
+
+                    }
+
+
 
                     console.log(alimentos.listos);
 
@@ -1376,37 +1627,39 @@ $(document).ready(function(){
 
         });
 
-    $("#tabcategorias").click(function () {
+    // $("#tabcategorias").click(function () {
+    //
+    //
+    //     $.post(baseurl + 'paciente/categorias_json', function (data) {
+    //
+    //         var result = JSON.parse(data);
+    //
+    //         console.log(result);
+    //
+    //         $.each(result, function (i, val) {
+    //
+    //             $("#espaciocategorias").append('<li data-toggle="modal" data-target="#modalalimentos" data-id=' + val.IDCategoria + ' class="badge badge-pill purple btn btn-bg" id=categoria >' + val.Nombre + '</li>').hover(function () {
+    //
+    //                 $(this).css("cursor", "pointer");
+    //             }, function () {
+    //                 $(this).css("cursor", "hand");
+    //
+    //             });
+    //
+    //
+    //         });
+    //
+    //         //$("#tabcategorias").addClass("disabled");
+    //
+    //     });
+    // });
 
 
-        $.post(baseurl + 'paciente/categorias_json', function (data) {
-
-            var result = JSON.parse(data);
-
-            console.log(result);
-
-            $.each(result, function (i, val) {
-
-                $("#espaciocategorias").append('<li data-toggle="modal" data-target="#modalalimentos" data-id=' + val.IDCategoria + ' class="badge badge-pill purple btn btn-bg" id=categoria >' + val.Nombre + '</li>').hover(function () {
-
-                    $(this).css("cursor", "pointer");
-                }, function () {
-                    $(this).css("cursor", "hand");
-
-                });
+    $(document).on("click", "#categoria", function () {
 
 
-            });
 
-            $("#tabcategorias").addClass("disabled");
-
-        });
-    });
-
-
-    $("#categoria").live('click', function() {
-
-        var dato = $(this).data("id");
+            var dato = $(this).data("id");
 
         idcategoria = dato;
 
@@ -1436,54 +1689,33 @@ $(document).ready(function(){
         });
 
 
-        var modalsubcategoria = "";
-        modalsubcategoria += '<div class="modal fade" id="modalalimentos">';
-        modalsubcategoria += '<div class="modal-dialog" role="document">';
-        modalsubcategoria += '<div class="modal-content">';
-        modalsubcategoria += '<div class="modal-header text-sm-center-center">';
-        modalsubcategoria += '<h5 class="modal-title font-weight-bold ">Elige tus alimentos para agregar a tu plato</h5>';
-        modalsubcategoria += '<button type="button" class="close" data-dismiss="modal" aria-label="Close">';
-        modalsubcategoria += '<span id="cerrarmodalalimentos" aria-hidden="true">&times;</span>';
-        modalsubcategoria += '</button>';
-        modalsubcategoria += '</div>';
-
-        modalsubcategoria += '<div class="modal-body" >';
-        // modalsubcategoria += '<div class="md-form">';
-        // modalsubcategoria += '<i class="fa fa-user prefix"></i>';
-        // modalsubcategoria += '<input type="text" placeholder="Nombre" id="capturapaciente" class="text-center form-control"> </input>';
-        //modalsubcategoria += '</div>';
-        modalsubcategoria += '<span>';
-        modalsubcategoria += '<ul class="font-weight-bold" id="vienenalimentos"></ul>';
-        modalsubcategoria += '</span>';
-        modalsubcategoria += '</div>';
-
-        modalsubcategoria += '<div class="modal-footer">';
-        modalsubcategoria += '<button type="button" id="btnconfirmaralimentos" class="btn btn-success btn-block" data-dismiss="modal">Listo</button>';
-        modalsubcategoria += '</div>';
-        modalsubcategoria += '</div>';
-        modalsubcategoria += '</div>';
-        modalsubcategoria += '</div>';
-
-        $("#espaciocategorias").append(modalsubcategoria);
-
-
     });
 
     //si se cierra la ventana modal elimina los alimentos mostrados anteriormente
-    $("#cerrarmodalalimentos").live('click', function () {
-        $("#modalalimentos").remove();
-    });
+    $(document).on("click", "#cerrarmodalalimentos", function () {
+
+            $("li#alimento").remove();
+        });
 
     //si se presiona el boton de listo en la ventana modal se eliminan los alimentos mostrados anteriormen
-    $("#btnconfirmaralimentos").live('click', function () {
-        $("#modalalimentos").remove();
-    });
+        $(document).on("click", "#btnconfirmaralimentos", function () {
 
-    //cuando se de click sobre un plato determinado
+                $("li#alimento").remove();
+            });
+
+    //cuando se de click sobre una combinacion de plato determinado
     $(".opcion-plato").click( function () {
+        if (actualpaciente===0)
+        {
+            swal("No estas identificado", "Identificate primero", "error")
+
+            return false;
+        }else
+
 
         var idseleccion = $(this).data("id");
         var combinacion = $(this).data("nombre");
+        $(this).addClass("disabled");
 
         idselecciongr = idseleccion;
         nombrecombinacion = combinacion;
@@ -1526,25 +1758,69 @@ $(document).ready(function(){
         $(this).addClass("disabled")
         console.log(dia);
 
-    })
+    });
 
     //capturamos el plato que se haya seleccionado
     $(".opcplato").click( function () {
-        var that = this;
+        //var that = this;
+        if (actualpaciente===0)
+        {
+            swal("No estas identificado", "Identificate primero", "error")
 
-        var nombreplato = $(this).data("nombre");
+            return false;
+        }else
+
+
+            var nombreplato = $(this).data("nombre");
 
         var idplato = $(this).data("id");
         idplatos = idplato;
 
-        that.disabled = true;
+        //that.disabled = true;
 
-        $(this).addClass("disabled");
+        $(this).addClass('disabled');
 
         console.log(idplato);
 
 
-    })
+    });
+
+    $("#tabplatos").click( function ( ) {
+        if (actualpaciente===0)
+        {
+            swal("No estas identificado", "Identificate primero", "error")
+
+            return false;
+        }
+    });
+
+    $("#tabdias").click( function ( ) {
+        if (actualpaciente===0)
+        {
+            swal("No estas identificado", "Identificate primero", "error")
+
+            return false;
+        }
+    });
+
+    $("#tabcomidas").click( function ( ) {
+        if (actualpaciente===0)
+        {
+            swal("No estas identificado", "Identificate primero", "error")
+
+            return false;
+        }
+    });
+
+    $("#tabcategorias").click( function ( ) {
+        if (actualpaciente===0)
+        {
+            swal("No estas identificado", "Identificate primero", "error")
+
+            return false;
+        }
+    });
+
 
 
 
@@ -1557,9 +1833,6 @@ $(document).ready(function(){
     $(window).bind('beforeunload', function(){
         return 'Seguro deseas salir?';
     });
-
-//probando github desktop
-
 
 
 
