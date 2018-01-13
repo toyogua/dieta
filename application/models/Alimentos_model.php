@@ -35,8 +35,8 @@ class Alimentos_model extends CI_Model{
 
     public function alimentos_categoria($idcategoria)
     {
-
-        $this->db->select('IDAlimento, Nombre, Calorias, IDCategoria, img');
+        //HEX(Imagen) as imgb64 tomamos el campo tipo blob y lo convertimos a hexadecimal y asi lo retornamos
+        $this->db->select('IDAlimento, Nombre, Calorias, Carbohidratos, Grasas, IDCategoria, HEX(Imagen) as imgb64, proteinas,img');
 
         $this->db->from('alimentos');
 
@@ -46,9 +46,22 @@ class Alimentos_model extends CI_Model{
 
         if($query->num_rows() > 0){
 
+
             return $query->result();
 
         }
+
+    }
+
+    public  function  getImagenCruda($alimento){
+        $this->db->select(' HEX(Imagen) as imgb64');
+
+        $this->db->from('alimentos');
+
+        $this->db->where('IDAlimento', $alimento);
+        $query = $this->db->get();
+
+        return $query->result();
 
     }
 
@@ -100,14 +113,6 @@ class Alimentos_model extends CI_Model{
 
     public function buscaralimentoreceta($alimentoreceta){
 
-        //$this->db->like('Nombre', $alimentoreceta);
-        //$get_data = $this->db->get('alimentos', 3);
-
-            //if ($get_data->num_rows() < 1){
-                //return false ;
-            //}
-        //return $get_data->result();
-
          $this->db->distinct();
         $this->db->select('
            
@@ -122,11 +127,10 @@ class Alimentos_model extends CI_Model{
 
         $this->db->from('alimentos');
         $this->db->join('detallereceta', 'detallereceta.IDAlimento = alimentos.IDAlimento');
-        //$this->db->join('recetas', 'recetas.IDReceta = detallereceta.IDReceta');
+
        
         $this->db->like('Nombre', $alimentoreceta);
-        //$this->db->where('recetas.IDReceta', $dia);
-        //$this->db->where('dietaplato.plato', $plato);
+
 
         $query = $this->db->get();
 
@@ -150,9 +154,13 @@ class Alimentos_model extends CI_Model{
             alimentos.IDCategoria as idcategoria,
             alimentos.Nombre as nombrealimento,
             alimentos.img as imagen,
+            HEX(alimentos.Imagen) as imgb64,
             
             
             recetas.totalcalorias as calorias,
+            recetas.totalgrasas as grasas,
+            recetas.totalcarbohidratos as carbohidratos,
+            recetas.totalproteinas as proteinas,
             recetas.preparacion as preparacion
             
             ');
@@ -162,9 +170,6 @@ class Alimentos_model extends CI_Model{
         $this->db->join('recetas', 'recetas.IDReceta = detallereceta.IDReceta');
        
         $this->db->where('detallereceta.IDReceta', $idreceta);
-        //$this->db->where('recetas.IDReceta', $dia);
-        //$this->db->where('dietaplato.plato', $plato);
-
 
         $query = $this->db->get();
 

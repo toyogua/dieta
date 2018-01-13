@@ -50,11 +50,23 @@ class Paciente extends CI_Controller
 
         $data = $this->Alimentos_model->alimentos_categoria($idcategoria);
 
+        for($i=0; $i<count($data); $i++){
+
+            //convertimos el valor Hexadecimal devuelto en el query y lo convertimos a base64
+            //decimos, la imagen que este en este momento sera resplanzada por su respectivo ahora valor base64
+            $data[$i]->imgb64 =  base64_encode(pack('H*', $data[$i]->imgb64 ));
+        }
+
         echo json_encode($data);
 
+    }
 
-
-
+    function hex_to_base64($hex){
+        $return = '';
+        foreach(str_split($hex, 2) as $pair){
+            $return .= chr(hexdec($pair));
+        }
+        return base64_encode($return);
     }
 
     public function insertar_plato()
@@ -79,9 +91,9 @@ class Paciente extends CI_Controller
                 {
                     ?>
 
-                 <ul  id="respuesta" class="text-center" >
+                 <ul id="respuesta" class="text-center" >
 
-                     <li class="list-group-item respaciente cargarpaciente" data-id="<?php echo $fila->IDPaciente ?>" data-nombre="<?php echo $fila->Nombre ?>" ><?php echo $fila->Nombre ?></li>
+                     <li  class="list-group-item respaciente cargarpaciente" data-id="<?php echo $fila->IDPaciente ?>" data-nombre="<?php echo $fila->Nombre ?>" ><?php echo $fila->Nombre ?></li>
 
                  </ul>
 
@@ -148,7 +160,7 @@ class Paciente extends CI_Controller
             {
                 ?>
 
-                <li  id="respuesta" >
+                <li class="list-group-item" style="padding-left: 80px;"  id="respuesta" >
 
                     <a class="resalimento cargaralimento"  data-receta="<?php echo $fila->idreceta ?>" data-id="<?php echo $fila->idalimento ?>" data-nombre="<?php echo $fila->nombrealimento ?>" ><?php echo $fila->nombrereceta ?></a>
 
@@ -174,6 +186,13 @@ class Paciente extends CI_Controller
          $idreceta = $this->input->post('idreceta');
 
          $data = $this->Alimentos_model->busquedareceta($idreceta);
+
+        for($i=0; $i<count($data); $i++){
+
+            //convertimos el valor Hexadecimal devuelto en el query y lo convertimos a base64
+            //decimos, la imagen que este en este momento sera resplanzada por su respectivo ahora valor base64
+            $data[$i]->imgb64 =  base64_encode(pack('H*', $data[$i]->imgb64 ));
+        }
 
         echo json_encode($data);
 

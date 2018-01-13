@@ -2,7 +2,13 @@ var baseurl = 'http://localhost/dieta/';
 var actualpaciente = 0;
 var nombreactualpaciente = "";
 
+var diasarray = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'];
+
 var totalcalorias = 0;
+
+var totalgrasas = 0;
+var totalproteinas = 0;
+var totalcarbohidratos = 0;
 
 var iddia= 0;
 var idplatos= 0;
@@ -36,20 +42,6 @@ $(document).ready(function(){
         $(this).hide();
         $("#salir").show();
 
-        // var contenido = "";
-        // contenido += '<span class="bigBox-fondo "></span>';
-        // contenido +='<div class="bigBox-contenedor"  align="center">';
-        // contenido +='<span class="bigBox-Entrada"><input  class="text-accent-2" id="capturapaciente" placeholder="Ingresa tu nombre" type="text"></span>';
-        // contenido +='<span  id="resultadoBusqueda"></span>';
-        // contenido +='<button class="bigBox-Boton btn btn-default">Aceptar</button>';
-        // contenido +='</div>';
-        //
-        // $("#caja").append(contenido);
-        //
-        //
-        //
-        // $("#resultadoBusqueda").hide();
-        // $(".bigBox-Boton").hide();
 
         var consulta;
         //hacemos focus al campo de búsqueda
@@ -87,16 +79,11 @@ $(document).ready(function(){
 
         $("#btnconfirmarpaciente").click( function () {
 
-            // $(".bigBox-fondo").remove();
-            // $(".bigBox-contenedor").remove();
+
             $("#resultadoBusqueda").remove();
 
             $("#bienvenidapaciente").show();
             $("#bienvenidapaciente").text("Bienvenid@ "+ nombreactualpaciente +"");
-
-
-
-
 
         });
 
@@ -118,7 +105,7 @@ $(document).ready(function(){
             function(isConfirm){
                 if (isConfirm) {
 
-                    swal("Haza salido correctamente!", "Debes identificarte para volver a iniciar", "success");
+                    swal("Haz salido correctamente!", "Debes identificarte para volver a iniciar", "success");
                     window.location = baseurl+'paciente';
 
 
@@ -127,18 +114,8 @@ $(document).ready(function(){
             });
 
 
-
-
     });
 
-
-    $("li.platoslunes").hide();
-    $("li.platosmartes").hide();
-    $("li.platosmiercoles").hide();
-    $("li.platosjueves").hide();
-    $("li.platosviernes").hide();
-    $("li.platossabado").hide();
-    $("li.platosdomingo").hide();
 
     $("li.selplato").hide();
 
@@ -184,61 +161,26 @@ $(document).ready(function(){
         }
     }); //FIN #cargar_json(cargar categorias)
 
-//     $("#categoria").live('click', function(){
-//
-//         //var id =
-//         //corregido el bug de sumar 1 al id de la categoria
-//         var dato = $(this).data("id");
-//
-//        idcategoria =dato;
-//
-//         // console.log(dato);
-//
-//         $.ajax({
-//             type: "POST",
-//             url: baseurl+'paciente/alimentos_json',
-//             dataType: 'json',
-//             data: {id: dato},
-//             success: function(res){console.log(res);
-//                 if (res) {
-//                     $.each(res, function ( j, val) {
-//
-//                         //corregido el bug de la variable para asignar el id de alimento
-//                         $("#contenedor_subcategorias").append('<li data-id=' + val.IDAlimento + ' data-imagen='+ val.img + ' data-categoria=' + val.IDCategoria + ' data-calorias=' + val.Calorias + ' id=alimento class=list-group-item>' + val.Nombre + ', ' + val.Calorias + '</li>').hover(function(){
-//
-//     $(this).css("cursor", "pointer");
-//     }, function(){
-//     $(this).css("cursor", "hand");
-// });
-//                     });
-//
-//                 }
-//             }
-//         });
-//             $("li#alimento").hide();
-//             $('ul#categoria').hide();
-//             $(".ocultar").hide();
-//             $("#cargar_json").show();
-//
-//     });//FIN #categoria (cargar_subcategorias)
 
 
     //cuando se de click sobre cada alimento
     $(document).on("click", "#alimento", function () {
-    //$("#alimento").live('click', function(){
 
-        //var idalimento =
+
+       var imgb64 = $(this).data("imgb64");
         //corregido el bug de sumar 1 al id del alimento
         var id = $(this).data("id");
 
         //capturamos la imagen de cada alimento
         var archivo = $(this).data("imagen");
 
-        var cantidad = parseInt($(this).data("calorias"));
+        var grasas          = parseInt($(this).data("grasas"));
+        var carbohidratos   = parseInt($(this).data("carbohidratos"));
+        var proteinas       = parseInt($(this).data("proteinas"));
 
         var idcategoria = $(this).data("categoria");
 
-
+        //var diasarray = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'];
 
 
         swal({
@@ -255,25 +197,14 @@ $(document).ready(function(){
             function (isConfirm) {
                 if (isConfirm) {
 
-                    totalcalorias =  totalcalorias + cantidad;
-
-                    $("#lblcalorias").text("Total de calorias para este plato: "+ totalcalorias +"");
-
-
+                    totalgrasas =  totalgrasas + grasas;
+                    totalcarbohidratos = totalcarbohidratos + carbohidratos;
+                    totalproteinas = totalproteinas + proteinas;
 
 
-                    //cada alimento es agregado al ojbeto json
-                    // alimentos.listos.push({
-                    //     "idcombinacion" : idselecciongr,
-                    //     "nombrecombinacion" : nombrecombinacion,
-                    //     "idalimento"    : id,
-                    //     "idcategoria"   : idcategoria,
-                    //     "idpaciente"    : actualpaciente,
-                    //     "idplato"       : idplatos,
-                    //     "iddia"         : iddia
-                    //
-                    //
-                    // });
+                    $("#lblgrasas").text("Total de grasas para este plato: "+ totalgrasas +"");
+                    $("#lblcarbohidratos").text("Total de carbohidratos para este plato: "+ totalcarbohidratos +"");
+                    $("#lblproteinas").text("Total de proteinas para este plato: "+ totalproteinas +"");
 
                     //$( '.checkdias' ).on( 'click', function() {
                     if ($("#oplunes").prop('checked')) {
@@ -382,6 +313,28 @@ $(document).ready(function(){
 
                     }
 
+                    if ($("#optodos").prop('checked')) {
+
+                        $.each( diasarray, function( h, val ) {
+
+                            alimentos.listos.push({
+                                "idcombinacion": idselecciongr,
+                                "nombrecombinacion": nombrecombinacion,
+                                "idalimento": id,
+                                "idcategoria": idcategoria,
+                                "idpaciente": actualpaciente,
+                                "idplato": idplatos,
+                                "iddia": val
+
+
+                            });
+
+                        });
+
+
+
+                    }
+
 
                     var imagen = archivo;
 
@@ -393,618 +346,63 @@ $(document).ready(function(){
                     var tl = new TimelineMax(); //variabla para la animacion
 
 
-                 if (idselecciongr ==1 ){
+                 //if (idselecciongr == 1 ){
 
-                    if (idcategoria ==2 ) {
-                        // $("#imgc5").attr('src', url);
-                        // tl.from("#imgc5", 1.3, { x: "+=850px", ease: Bounce.easeOut })
-                        //     .from("#imgc5", 1, {opacity:0}, "-=1.3" );
+                    if (idcategoria == 2 ) {
 
                         var cuenta= 0;
+                        //div para lacteos
 
-                        $("#imgc5").append('<img  style="border-radius: 150px; height: 50px; width: 50px; margin-top: 60px; margin-left: 425px;"  class="img-fluid" alt="Dieta del Plato">').attr('src', url);
-
-
-
+                        $("#c5").append('<li style="padding-top: 0px; padding-bottom: 0px;"><img class="img-fluid imgres" id=im'+ id +' style="border-radius: 150px; height: 50px; width: 50px;" src= "data:image/jpeg;base64,'+imgb64+'"></li>');
+                       //$("img#img"+j).attr('src', 'data:image/jpeg;base64,'+val.imgb64+'');
+                        tl.from("#im"+id, 1.3, { x: "+=850px", ease: Bounce.easeOut })
+                            .from("#im"+id, 1, {opacity:0}, "-=1.3" );
                     }else
                     if (idcategoria == 3){
 
-                        $("#imgc2").attr('src', url);
-                        tl.from("#imgc2", 1.3, { x: "+=850px", ease: Bounce.easeOut })
-                            .from("#imgc2", 1, {opacity:0}, "-=1.3" );
+                        $("#c2").append('<li style="padding-top: 0px; padding-bottom: 0px;"><img class="img-fluid imgres" id=im'+ id +'  style="border-radius: 150px; height: 50px; width: 50px;" src= "data:image/jpeg;base64,'+imgb64+'"></li>');
+                        //$("img#img"+j).attr('src', 'data:image/jpeg;base64,'+val.imgb64+'');
+                        tl.from("#im"+id, 1.3, { x: "+=850px", ease: Bounce.easeOut })
+                            .from("#im"+id, 1, {opacity:0}, "-=1.3" );
 
                     }else
                      if (idcategoria == 4){
-                         $("#imgc1").attr('src', url);
-                        tl.from("#imgc1", 1.3, { x: "+=850px", ease: Bounce.easeOut })
-                            .from("#imgc1", 1, {opacity:0}, "-=1.3" );
+                         $("#c1").append('<li style="padding-top: 0px; padding-bottom: 0px;"><img class="img-fluid imgres" id=im'+id+' style="border-radius: 150px; height: 50px; width: 50px;" src= "data:image/jpeg;base64,'+imgb64+'"></li>');
+                         //$("img#img"+j).attr('src', 'data:image/jpeg;base64,'+val.imgb64+'');
+                         tl.from("#im"+id, 1.3, { x: "+=850px", ease: Bounce.easeOut })
+                             .from("#im"+id, 1, {opacity:0}, "-=1.3" );
                         }
                         else
-                            if (idcategoria == 5){
-                                $("#imgc3").attr('src', url);
-                                tl.from("#imgc3", 1.3, { x: "+=850px", ease: Bounce.easeOut })
-                                .from("#imgc3", 1, {opacity:0}, "-=1.3" );
+                            if (idcategoria == 5 || idcategoria == 1){
+                                $("#c3").append('<li style="padding-top: 0px; padding-bottom: 0px;"><img class="img-fluid imgres" id=im'+id+' style="border-radius: 150px; height: 50px; width: 50px;" src= "data:image/jpeg;base64,'+imgb64+'"></li>');
+                                //$("img#img"+j).attr('src', 'data:image/jpeg;base64,'+val.imgb64+'');
+                                tl.from("#im"+id, 1.3, { x: "+=850px", ease: Bounce.easeOut })
+                                    .from("#im"+id, 1, {opacity:0}, "-=1.3" );
                             }
                             else
-                            if (idcategoria > 5){
-                                $("#imgc4").attr('src', url);
-                                tl.from("#imgc4", 1.3, { x: "+=850px", ease: Bounce.easeOut })
-                                    .from("#imgc4", 1, {opacity:0}, "-=1.3" );
+                            if (idcategoria >= 6){
+                                $("#c4").append('<li style="padding-top: 0px; padding-bottom: 0px;"><img class="img-fluid imgres" id=im'+id+' style="border-radius: 150px; height: 50px; width: 50px;" src= "data:image/jpeg;base64,'+imgb64+'"></li>');
+                                //$("img#img"+j).attr('src', 'data:image/jpeg;base64,'+val.imgb64+'');
+                                tl.from("#im"+id, 1.3, { x: "+=850px", ease: Bounce.easeOut })
+                                    .from("#im"+id, 1, {opacity:0}, "-=1.3" );
                             }
-                            else
-                            if (idcategoria == 1){
-                                $("#imgc4").attr('src', url);
-                                tl.from("#imgc4", 1.3, { x: "+=850px", ease: Bounce.easeOut })
-                                    .from("#imgc4", 1, {opacity:0}, "-=1.3" );
-                            }
+
+
 
 
                     swal("Alimento agregado", "Su alimento fue agregado al plato", "success");
-                    console.log(imagen);
-                 } //fin del if (idselecciongr ==1 )
-
-                    if (idselecciongr ==2 ){
-
-                        if (idcategoria ==2 ) {
-                            // $("#imgc5").attr('src', url);
-                            // tl.from("#imgc5", 1.3, { x: "+=850px", ease: Bounce.easeOut })
-                            //     .from("#imgc5", 1, {opacity:0}, "-=1.3" );
-
-                            var cuenta= 0;
-
-                            $("#imgc5").append('<img  style="border-radius: 150px; height: 50px; width: 50px; margin-top: 60px; margin-left: 425px;"  class="img-fluid" alt="Dieta del Plato">').attr('src', url);
+                    //console.log(imagen);
+                 //} //fin del if (idselecciongr ==1 )
 
 
 
-                        }else
-                        if (idcategoria == 3){
-
-                            $("#imgc2").attr('src', url);
-                            tl.from("#imgc2", 1.3, { x: "+=850px", ease: Bounce.easeOut })
-                                .from("#imgc2", 1, {opacity:0}, "-=1.3" );
-
-                        }else
-                        if (idcategoria == 4){
-                            $("#imgc1").attr('src', url);
-                            tl.from("#imgc1", 1.3, { x: "+=850px", ease: Bounce.easeOut })
-                                .from("#imgc1", 1, {opacity:0}, "-=1.3" );
-                        }
-                        /*else
-                        if (idcategoria == 5){
-                            $("#imgc3").attr('src', url);
-                            tl.from("#imgc3", 1.3, { x: "+=850px", ease: Bounce.easeOut })
-                                .from("#imgc3", 1, {opacity:0}, "-=1.3" );
-                        }*/
-                        else
-                        if (idcategoria > 5){
-                            $("#imgc4").attr('src', url);
-                            tl.from("#imgc4", 1.3, { x: "+=850px", ease: Bounce.easeOut })
-                                .from("#imgc4", 1, {opacity:0}, "-=1.3" );
-                        }
-                        else
-                        if (idcategoria == 1){
-                            $("#imgc4").attr('src', url);
-                            tl.from("#imgc4", 1.3, { x: "+=850px", ease: Bounce.easeOut })
-                                .from("#imgc4", 1, {opacity:0}, "-=1.3" );
-                        }
 
 
-                        swal("Alimento agregado", "Su alimento fue agregado al plato", "success");
-                        console.log(imagen);
-                    } //fin del if (idselecciongr ==2 )
-
-                    if (idselecciongr ==3 ){
-
-                        if (idcategoria ==2 ) {
-                            // $("#imgc5").attr('src', url);
-                            // tl.from("#imgc5", 1.3, { x: "+=850px", ease: Bounce.easeOut })
-                            //     .from("#imgc5", 1, {opacity:0}, "-=1.3" );
-
-                            var cuenta= 0;
-
-                            $("#imgc5").append('<img  style="border-radius: 150px; height: 50px; width: 50px; margin-top: 60px; margin-left: 425px;"  class="img-fluid" alt="Dieta del Plato">').attr('src', url);
-
-
-
-                        }else
-                        if (idcategoria == 3){
-
-                            $("#imgc2").attr('src', url);
-                            tl.from("#imgc2", 1.3, { x: "+=850px", ease: Bounce.easeOut })
-                                .from("#imgc2", 1, {opacity:0}, "-=1.3" );
-
-                        }/*else
-                        if (idcategoria == 4){
-                            $("#imgc1").attr('src', url);
-                            tl.from("#imgc1", 1.3, { x: "+=850px", ease: Bounce.easeOut })
-                                .from("#imgc1", 1, {opacity:0}, "-=1.3" );
-                        }*/
-                        else
-                        if (idcategoria == 5){
-                            $("#imgc3").attr('src', url);
-                            tl.from("#imgc3", 1.3, { x: "+=850px", ease: Bounce.easeOut })
-                                .from("#imgc3", 1, {opacity:0}, "-=1.3" );
-                        }
-                        else
-                        if (idcategoria > 5){
-                            $("#imgc4").attr('src', url);
-                            tl.from("#imgc4", 1.3, { x: "+=850px", ease: Bounce.easeOut })
-                                .from("#imgc4", 1, {opacity:0}, "-=1.3" );
-                        }
-                        else
-                        if (idcategoria == 1){
-                            $("#imgc4").attr('src', url);
-                            tl.from("#imgc4", 1.3, { x: "+=850px", ease: Bounce.easeOut })
-                                .from("#imgc4", 1, {opacity:0}, "-=1.3" );
-                        }
-
-
-                        swal("Alimento agregado", "Su alimento fue agregado al plato", "success");
-                        console.log(imagen);
-                    } //fin del if (idselecciongr ==3 )
-
-                    if (idselecciongr ==4 ){
-
-                        if (idcategoria ==2 ) {
-                            // $("#imgc5").attr('src', url);
-                            // tl.from("#imgc5", 1.3, { x: "+=850px", ease: Bounce.easeOut })
-                            //     .from("#imgc5", 1, {opacity:0}, "-=1.3" );
-
-                            var cuenta= 0;
-
-                            $("#imgc5").append('<img  style="border-radius: 150px; height: 50px; width: 50px; margin-top: 60px; margin-left: 425px;"  class="img-fluid" alt="Dieta del Plato">').attr('src', url);
-
-
-
-                        }else
-                        if (idcategoria == 3){
-
-                            $("#imgc2").attr('src', url);
-                            tl.from("#imgc2", 1.3, { x: "+=850px", ease: Bounce.easeOut })
-                                .from("#imgc2", 1, {opacity:0}, "-=1.3" );
-
-                        }/*else
-                        if (idcategoria == 4){
-                            $("#imgc1").attr('src', url);
-                            tl.from("#imgc1", 1.3, { x: "+=850px", ease: Bounce.easeOut })
-                                .from("#imgc1", 1, {opacity:0}, "-=1.3" );
-                        }
-                        else
-                        if (idcategoria == 5){
-                            $("#imgc3").attr('src', url);
-                            tl.from("#imgc3", 1.3, { x: "+=850px", ease: Bounce.easeOut })
-                                .from("#imgc3", 1, {opacity:0}, "-=1.3" );
-                        }*/
-                        else
-                        if (idcategoria > 5){
-                            $("#imgc4").attr('src', url);
-                            tl.from("#imgc4", 1.3, { x: "+=850px", ease: Bounce.easeOut })
-                                .from("#imgc4", 1, {opacity:0}, "-=1.3" );
-                        }
-                        else
-                        if (idcategoria == 1){
-                            $("#imgc4").attr('src', url);
-                            tl.from("#imgc4", 1.3, { x: "+=850px", ease: Bounce.easeOut })
-                                .from("#imgc4", 1, {opacity:0}, "-=1.3" );
-                        }
-
-
-                        swal("Alimento agregado", "Su alimento fue agregado al plato", "success");
-                        console.log(imagen);
-                    } //fin del if (idselecciongr ==4 )
                 }
             });
 
 
     }); //FIN #alimento(seleccionar algun alimento)
-
-
-    $(".btnlunes").click(function (e) {
-
-
-        if (actualpaciente===0){
-            e.preventDefault();
-
-            swal("Aún no estás identificado!", "Presiona el botón Identificarse e ingresa tu nombre", "error")
-        }else {
-            e.preventDefault();
-
-            var dia = $(this).data("id");
-
-
-            if (iddia != 0) {
-
-                if (iddia != dia)
-                    swal("Ya haz seleccionado un día!", "Debes finalizar los 7 platos para poder elegir otro día", "error")
-
-                return false;
-
-            } else {
-
-                swal({
-                        title: "Haz seleccionado el día: " + dia,
-                        text: "Estás seguro de esto?",
-                        type: "warning",
-                        showCancelButton: true,
-                        confirmButtonColor: "#DD6B55",
-                        confirmButtonText: "Sí, Continuar!",
-                        cancelButtonText: "No, Cancelar!",
-                        closeOnConfirm: false,
-                        closeOnCancel: true
-                    },
-                    function (isConfirm) {
-                        if (isConfirm) {
-
-                            iddia = dia;
-
-                            $("li.platoslunes").show();
-                            $("li.platosmartes").hide();
-                            $("li.platosmiercoles").hide();
-                            $("li.platosjueves").hide();
-                            $("li.platosviernes").hide();
-                            $("li.platossabado").hide();
-                            $("li.platosdomingo").hide();
-                            swal("Día confirmado!", "Ahora selecciona tus platos", "success");
-
-
-                        }
-                    });
-
-            }
-        }
-
-
-
-    });// FIN .btnlunes
-
-
-    $(".btnmartes").click(function (e) {
-
-
-
-        if (actualpaciente===0){
-            e.preventDefault();
-
-            swal("Aún no estás identificado!", "Presiona el botón Identificarse e ingresa tu nombre", "error")
-        }else {
-            e.preventDefault();
-
-            var dia = $(this).data("id");
-
-
-            if (iddia != 0) {
-
-                if (iddia != dia)
-                    swal("Ya haz seleccionado un día!", "Debes finalizar los 7 platos para poder elegir otro día", "error")
-
-                return false;
-
-            } else {
-
-                swal({
-                        title: "Haz seleccionado el día: " + dia,
-                        text: "Estás seguro de esto?",
-                        type: "warning",
-                        showCancelButton: true,
-                        confirmButtonColor: "#DD6B55",
-                        confirmButtonText: "Sí, Continuar!",
-                        cancelButtonText: "No, Cancelar!",
-                        closeOnConfirm: false,
-                        closeOnCancel: true
-                    },
-                    function (isConfirm) {
-                        if (isConfirm) {
-
-                            iddia = dia;
-
-                            $("li.platosmartes").show();
-                            $("li.platoslunes").hide();
-                            $("li.platosmiercoles").hide();
-                            $("li.platosjueves").hide();
-                            $("li.platosviernes").hide();
-                            $("li.platossabado").hide();
-                            $("li.platosdomingo").hide();
-                            swal("Día confirmado!", "Ahora selecciona tus platos", "success");
-
-
-                        }
-                    });
-
-            }
-        }
-
-    });//FIN btnmartes
-
-
-    $(".btnmiercoles").click(function (e) {
-
-
-
-        if (actualpaciente===0){
-            e.preventDefault();
-
-            swal("Aún no estás identificado!", "Presiona el botón Identificarse e ingresa tu nombre", "error")
-        }else {
-            e.preventDefault();
-
-            var dia = $(this).data("id");
-
-
-            if (iddia != 0) {
-
-                if (iddia != dia)
-                    swal("Ya haz seleccionado un día!", "Debes finalizar los 7 platos para poder elegir otro día", "error")
-
-                return false;
-
-            } else {
-
-                swal({
-                        title: "Haz seleccionado el día: " + dia,
-                        text: "Estás seguro de esto?",
-                        type: "warning",
-                        showCancelButton: true,
-                        confirmButtonColor: "#DD6B55",
-                        confirmButtonText: "Sí, Continuar!",
-                        cancelButtonText: "No, Cancelar!",
-                        closeOnConfirm: false,
-                        closeOnCancel: true
-                    },
-                    function (isConfirm) {
-                        if (isConfirm) {
-
-                            iddia = dia;
-
-                            $("li.platosmiercoles").show();
-                            $("li.platoslunes").hide();
-                            $("li.platosmartes").hide();
-                            $("li.platosjueves").hide();
-                            $("li.platosviernes").hide();
-                            $("li.platossabado").hide();
-                            $("li.platosdomingo").hide();
-                            swal("Día confirmado!", "Ahora selecciona tus platos", "success");
-
-
-                        }
-                    });
-
-            }
-        }
-
-    });// FIN btnmiercoles
-
-
-    $(".btnjueves").click(function (e) {
-
-
-
-        if (actualpaciente===0){
-            e.preventDefault();
-
-            swal("Aún no estás identificado!", "Presiona el botón Identificarse e ingresa tu nombre", "error")
-        }else {
-            e.preventDefault();
-
-            var dia = $(this).data("id");
-
-
-            if (iddia != 0) {
-
-                if (iddia != dia)
-                    swal("Ya haz seleccionado un día!", "Debes finalizar los 7 platos para poder elegir otro día", "error")
-
-                return false;
-
-            } else {
-
-                swal({
-                        title: "Haz seleccionado el día: " + dia,
-                        text: "Estás seguro de esto?",
-                        type: "warning",
-                        showCancelButton: true,
-                        confirmButtonColor: "#DD6B55",
-                        confirmButtonText: "Sí, Continuar!",
-                        cancelButtonText: "No, Cancelar!",
-                        closeOnConfirm: false,
-                        closeOnCancel: true
-                    },
-                    function (isConfirm) {
-                        if (isConfirm) {
-
-                            iddia = dia;
-
-                            $("li.platosjueves").show();
-                            $("li.platoslunes").hide();
-                            $("li.platosmartes").hide();
-                            $("li.platosmiercoles").hide();
-                            $("li.platosviernes").hide();
-                            $("li.platossabado").hide();
-                            $("li.platosdomingo").hide();
-                            swal("Día confirmado!", "Ahora selecciona tus platos", "success");
-
-
-                        }
-                    });
-
-            }
-        }
-
-    });//FIN btnjueves
-
-
-    $(".btnviernes").click(function (e) {
-
-
-
-        if (actualpaciente===0){
-            e.preventDefault();
-
-            swal("Aún no estás identificado!", "Presiona el botón Identificarse e ingresa tu nombre", "error")
-        }else {
-            e.preventDefault();
-
-            var dia = $(this).data("id");
-
-
-            if (iddia != 0) {
-
-                if (iddia != dia)
-                    swal("Ya haz seleccionado un día!", "Debes finalizar los 7 platos para poder elegir otro día", "error")
-
-                return false;
-
-            } else {
-
-                swal({
-                        title: "Haz seleccionado el día: " + dia,
-                        text: "Estás seguro de esto?",
-                        type: "warning",
-                        showCancelButton: true,
-                        confirmButtonColor: "#DD6B55",
-                        confirmButtonText: "Sí, Continuar!",
-                        cancelButtonText: "No, Cancelar!",
-                        closeOnConfirm: false,
-                        closeOnCancel: true
-                    },
-                    function (isConfirm) {
-                        if (isConfirm) {
-
-                            iddia = dia;
-
-                            $("li.platosviernes").show();
-                            $("li.platoslunes").hide();
-                            $("li.platosmartes").hide();
-                            $("li.platosmiercoles").hide();
-                            $("li.platosjueves").hide();
-                            $("li.platossabado").hide();
-                            $("li.platosdomingo").hide();
-                            swal("Día confirmado!", "Ahora selecciona tus platos", "success");
-
-
-                        }
-                    });
-
-            }
-        }
-
-    });// FIN btnviernes
-
-
-    $(".btnsabado").click(function (e) {
-
-
-
-        if (actualpaciente===0){
-            e.preventDefault();
-
-            swal("Aún no estás identificado!", "Presiona el botón Identificarse e ingresa tu nombre", "error")
-        }else {
-            e.preventDefault();
-
-            var dia = $(this).data("id");
-
-
-            if (iddia != 0) {
-
-                if (iddia != dia)
-                    swal("Ya haz seleccionado un día!", "Debes finalizar los 7 platos para poder elegir otro día", "error")
-
-                return false;
-
-            } else {
-
-                swal({
-                        title: "Haz seleccionado el día: " + dia,
-                        text: "Estás seguro de esto?",
-                        type: "warning",
-                        showCancelButton: true,
-                        confirmButtonColor: "#DD6B55",
-                        confirmButtonText: "Sí, Continuar!",
-                        cancelButtonText: "No, Cancelar!",
-                        closeOnConfirm: false,
-                        closeOnCancel: true
-                    },
-                    function (isConfirm) {
-                        if (isConfirm) {
-
-                            iddia = dia;
-
-                            $("li.platossabado").show();
-                            $("li.platoslunes").hide();
-                            $("li.platosmartes").hide();
-                            $("li.platosmiercoles").hide();
-                            $("li.platosjueves").hide();
-                            $("li.platosviernes").hide();
-                            $("li.platosdomingo").hide();
-                            swal("Día confirmado!", "Ahora selecciona tus platos", "success");
-
-
-                        }
-                    });
-
-            }
-        }
-
-    });// FIN btnsabado
-
-
-    $(".btndomingo").click(function (e) {
-
-
-
-        if (actualpaciente===0){
-            e.preventDefault();
-
-            swal("Aún no estás identificado!", "Presiona el botón Identificarse e ingresa tu nombre", "error")
-        }else {
-            e.preventDefault();
-
-            var dia = $(this).data("id");
-
-
-            if (iddia != 0) {
-
-                if (iddia != dia)
-                    swal("Ya haz seleccionado un día!", "Debes finalizar los 7 platos para poder elegir otro día", "error")
-
-                return false;
-
-            } else {
-
-                swal({
-                        title: "Haz seleccionado el día: " + dia,
-                        text: "Estás seguro de esto?",
-                        type: "warning",
-                        showCancelButton: true,
-                        confirmButtonColor: "#DD6B55",
-                        confirmButtonText: "Sí, Continuar!",
-                        cancelButtonText: "No, Cancelar!",
-                        closeOnConfirm: false,
-                        closeOnCancel: true
-                    },
-                    function (isConfirm) {
-                        if (isConfirm) {
-
-                            iddia = dia;
-
-                            $("li.platosdomingo").show();
-                            $("li.platoslunes").hide();
-                            $("li.platosmartes").hide();
-                            $("li.platosmiercoles").hide();
-                            $("li.platosjueves").hide();
-                            $("li.platosviernes").hide();
-                            $("li.platossabado").hide();
-                            swal("Día confirmado!", "Ahora selecciona tus platos", "success");
-
-
-                        }
-                    });
-
-            }
-        }
-
-    });// FIN btndomingo
-
 
 
     //capturamos el id del plato
@@ -1094,14 +492,6 @@ $(document).ready(function(){
                     var alimentosJSON = JSON.stringify(alimentos.listos);
                     // Realizamos la petición al servidor
 
-                    // $.post(baseurl+'paciente/insertaralimentos', {alimentos: alimentosJSON},
-                    //     function(respuesta) {
-                    //         console.log(respuesta);
-                    //     }).error(
-                    //     function(){
-                    //         console.log('Error al ejecutar la petición');
-                    //     }
-                    // );
 
                     $.ajax({
                         type: "POST",
@@ -1123,6 +513,9 @@ $(document).ready(function(){
 
 
                     totalcalorias = 0;
+                    totalproteinas = 0;
+                    totalcarbohidratos = 0;
+                    totalgrasas = 0;
 
 
                     idplatos= 0;
@@ -1131,13 +524,18 @@ $(document).ready(function(){
                         listos: []
                     };
 
+
+                    $("img.imgres").remove();
+
                     //regresamos las imagenes iniciales a cada plato
                     var url = "assets/img/alimentos/mas.png";
                     $("#imgc1").attr('src', url);
                     $("#imgc2").attr('src', url);
                     $("#imgc3").attr('src', url);
 
-                    $("#lblcalorias").text("Total de calorias para este plato: "+ totalcalorias +"");
+                    $("#lblproteinas").text("Total de proteinas para este plato: "+ totalproteinas +"");
+                    $("#lblcarbohidratos").text("Total de carbohidratos para este plato: "+ totalcarbohidratos +"");
+                    $("#lblgrasas").text("Total de grasas para este plato: "+ totalgrasas +"");
                     //$("li").find(".platos").show();
                     swal("Datos enviados!", "Su información ha sido almacenada.", "success");
 
@@ -1175,10 +573,8 @@ $(document).ready(function(){
 
 
 
-
-
                     }
-                    console.log(contadorclick);
+
 
                 }
 
@@ -1430,236 +826,267 @@ $(document).ready(function(){
             var nombrealimento = $(this).data("nombre");
             var idreceta = $(this).data("receta");
 
+            var tl = new TimelineMax();
+
             //variable para cambiar el fondo al normal cuando se elige la receta
             var nuevofondo = "assets/img/plato.png";
             $("#fondoprincipal").attr('src', nuevofondo);
 
+        swal({
+                title: "Estás seguro?",
+                text: "Esta operación no se puede deshacer!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Sí, Enviar!",
+                cancelButtonText: "No, Cancelar envío!",
+                closeOnConfirm: false,
+                closeOnCancel: true
+            },
+            function(isConfirm) {
+                if (isConfirm) {
 
-            $("#receta").val(nombrealimento);
-            $("#findrecetas").remove();
+                    $("#receta").val(nombrealimento);
+                    $("#findrecetas").remove();
 
-            $.ajax({
-            type: "POST",
-            url: baseurl+'paciente/getreceta',
-            dataType: 'json',
-            data: {idreceta: idreceta},
+                    $.ajax({
+                        type: "POST",
+                        url: baseurl+'paciente/getreceta',
+                        dataType: 'json',
+                        data: {idreceta: idreceta},
 
-            success: function(res){console.log(res);
+                        success: function(res){console.log(res);
 
-            if (res) {
+                            if (res) {
 
-                $.each(res, function (j, val) {
-
-
-
-                    if ($("#oplunes").prop('checked')) {
-
-                        alimentos.listos.push({
-                            "idreceta"      : val.idreceta,
-                            "nombrereceta"  : val.nombrereceta,
-                            "idalimento"    : val.idalimento,
-                            "idcategoria"   : val.idcategoria,
-                            "idcombinacion" : idselecciongr,
-                            "nombrecombinacion" : nombrecombinacion,
-                            "idpaciente"    : actualpaciente,
-                            "idplato"       : idplatos,
-                            "iddia"         : "Lunes"
-
-
-                        });
-
-                    }
-                    if ($("#opmartes").prop('checked')) {
-
-                        alimentos.listos.push({
-                            "idreceta"      : val.idreceta,
-                            "nombrereceta"  : val.nombrereceta,
-                            "idalimento"    : val.idalimento,
-                            "idcategoria"   : val.idcategoria,
-                            "idcombinacion" : idselecciongr,
-                            "nombrecombinacion" : nombrecombinacion,
-                            "idpaciente"    : actualpaciente,
-                            "idplato"       : idplatos,
-                            "iddia"         : "Martes"
-
-
-                        });
-
-                    }
-                    if ($("#opmiercoles").prop('checked')) {
-
-                        alimentos.listos.push({
-                            "idreceta"      : val.idreceta,
-                            "nombrereceta"  : val.nombrereceta,
-                            "idalimento"    : val.idalimento,
-                            "idcategoria"   : val.idcategoria,
-                            "idcombinacion" : idselecciongr,
-                            "nombrecombinacion" : nombrecombinacion,
-                            "idpaciente"    : actualpaciente,
-                            "idplato"       : idplatos,
-                            "iddia"         : "Miercoles"
-
-
-                        });
-
-                    }
-                    if ($("#opjueves").prop('checked')) {
-
-                        alimentos.listos.push({
-                            "idreceta"      : val.idreceta,
-                            "nombrereceta"  : val.nombrereceta,
-                            "idalimento"    : val.idalimento,
-                            "idcategoria"   : val.idcategoria,
-                            "idcombinacion" : idselecciongr,
-                            "nombrecombinacion" : nombrecombinacion,
-                            "idpaciente"    : actualpaciente,
-                            "idplato"       : idplatos,
-                            "iddia"         : "Jueves"
-
-
-                        });
-
-                    }
-                    if ($("#opviernes").prop('checked')) {
-
-                        alimentos.listos.push({
-                            "idreceta"      : val.idreceta,
-                            "nombrereceta"  : val.nombrereceta,
-                            "idalimento"    : val.idalimento,
-                            "idcategoria"   : val.idcategoria,
-                            "idcombinacion" : idselecciongr,
-                            "nombrecombinacion" : nombrecombinacion,
-                            "idpaciente"    : actualpaciente,
-                            "idplato"       : idplatos,
-                            "iddia"         : "Viernes"
-
-
-                        });
-
-                    }
-                    if ($("#opsabado").prop('checked')) {
-
-                        alimentos.listos.push({
-                            "idreceta"      : val.idreceta,
-                            "nombrereceta"  : val.nombrereceta,
-                            "idalimento"    : val.idalimento,
-                            "idcategoria"   : val.idcategoria,
-                            "idcombinacion" : idselecciongr,
-                            "nombrecombinacion" : nombrecombinacion,
-                            "idpaciente"    : actualpaciente,
-                            "idplato"       : idplatos,
-                            "iddia"         : "Sabado"
-
-
-                        });
-
-                    }
-                    if ($("#opdomingo").prop('checked')) {
-
-                        alimentos.listos.push({
-                            "idreceta"      : val.idreceta,
-                            "nombrereceta"  : val.nombrereceta,
-                            "idalimento"    : val.idalimento,
-                            "idcategoria"   : val.idcategoria,
-                            "idcombinacion" : idselecciongr,
-                            "nombrecombinacion" : nombrecombinacion,
-                            "idpaciente"    : actualpaciente,
-                            "idplato"       : idplatos,
-                            "iddia"         : "Domingo"
-
-
-                        });
-
-                    }
+                                $.each(res, function (j, val) {
 
 
 
-                    console.log(alimentos.listos);
+                                    if ($("#oplunes").prop('checked')) {
 
-                    var img = val.imagen;
-                    var cargar = "assets/img/alimentos/"+img+".png";
+                                        alimentos.listos.push({
+                                            "idreceta"      : val.idreceta,
+                                            "nombrereceta"  : val.nombrereceta,
+                                            "idalimento"    : val.idalimento,
+                                            "idcategoria"   : val.idcategoria,
+                                            "idcombinacion" : idselecciongr,
+                                            "nombrecombinacion" : nombrecombinacion,
+                                            "idpaciente"    : actualpaciente,
+                                            "idplato"       : idplatos,
+                                            "iddia"         : "Lunes"
 
-                        if (val.idcategoria ==4 ) {
-                            $("#imgc1").attr('src', cargar);
 
-                        }else
-                            if (val.idcategoria == 3){
+                                        });
 
-                                $("#imgc2").attr('src', cargar);
+                                    }
+                                    if ($("#opmartes").prop('checked')) {
 
-                            }else
-                                if (val.idcategoria == 5){
+                                        alimentos.listos.push({
+                                            "idreceta"      : val.idreceta,
+                                            "nombrereceta"  : val.nombrereceta,
+                                            "idalimento"    : val.idalimento,
+                                            "idcategoria"   : val.idcategoria,
+                                            "idcombinacion" : idselecciongr,
+                                            "nombrecombinacion" : nombrecombinacion,
+                                            "idpaciente"    : actualpaciente,
+                                            "idplato"       : idplatos,
+                                            "iddia"         : "Martes"
 
-                                    $("#imgc3").attr('src', cargar);
-                                }
-                                else
-                                    if (val.idcategoria == 2){
 
-                                        $("#imgc5").attr('src', cargar);
+                                        });
+
+                                    }
+                                    if ($("#opmiercoles").prop('checked')) {
+
+                                        alimentos.listos.push({
+                                            "idreceta"      : val.idreceta,
+                                            "nombrereceta"  : val.nombrereceta,
+                                            "idalimento"    : val.idalimento,
+                                            "idcategoria"   : val.idcategoria,
+                                            "idcombinacion" : idselecciongr,
+                                            "nombrecombinacion" : nombrecombinacion,
+                                            "idpaciente"    : actualpaciente,
+                                            "idplato"       : idplatos,
+                                            "iddia"         : "Miercoles"
+
+
+                                        });
+
+                                    }
+                                    if ($("#opjueves").prop('checked')) {
+
+                                        alimentos.listos.push({
+                                            "idreceta"      : val.idreceta,
+                                            "nombrereceta"  : val.nombrereceta,
+                                            "idalimento"    : val.idalimento,
+                                            "idcategoria"   : val.idcategoria,
+                                            "idcombinacion" : idselecciongr,
+                                            "nombrecombinacion" : nombrecombinacion,
+                                            "idpaciente"    : actualpaciente,
+                                            "idplato"       : idplatos,
+                                            "iddia"         : "Jueves"
+
+
+                                        });
+
+                                    }
+                                    if ($("#opviernes").prop('checked')) {
+
+                                        alimentos.listos.push({
+                                            "idreceta"      : val.idreceta,
+                                            "nombrereceta"  : val.nombrereceta,
+                                            "idalimento"    : val.idalimento,
+                                            "idcategoria"   : val.idcategoria,
+                                            "idcombinacion" : idselecciongr,
+                                            "nombrecombinacion" : nombrecombinacion,
+                                            "idpaciente"    : actualpaciente,
+                                            "idplato"       : idplatos,
+                                            "iddia"         : "Viernes"
+
+
+                                        });
+
+                                    }
+                                    if ($("#opsabado").prop('checked')) {
+
+                                        alimentos.listos.push({
+                                            "idreceta"      : val.idreceta,
+                                            "nombrereceta"  : val.nombrereceta,
+                                            "idalimento"    : val.idalimento,
+                                            "idcategoria"   : val.idcategoria,
+                                            "idcombinacion" : idselecciongr,
+                                            "nombrecombinacion" : nombrecombinacion,
+                                            "idpaciente"    : actualpaciente,
+                                            "idplato"       : idplatos,
+                                            "iddia"         : "Sabado"
+
+
+                                        });
+
+                                    }
+                                    if ($("#opdomingo").prop('checked')) {
+
+                                        alimentos.listos.push({
+                                            "idreceta"      : val.idreceta,
+                                            "nombrereceta"  : val.nombrereceta,
+                                            "idalimento"    : val.idalimento,
+                                            "idcategoria"   : val.idcategoria,
+                                            "idcombinacion" : idselecciongr,
+                                            "nombrecombinacion" : nombrecombinacion,
+                                            "idpaciente"    : actualpaciente,
+                                            "idplato"       : idplatos,
+                                            "iddia"         : "Domingo"
+
+
+                                        });
+
+                                    }
+
+                                    if ($("#optodos").prop('checked')) {
+
+                                        $.each( diasarray, function( h, dia ) {
+
+                                            alimentos.listos.push({
+                                                "idreceta"      : val.idreceta,
+                                                "nombrereceta"  : val.nombrereceta,
+                                                "idalimento"    : val.idalimento,
+                                                "idcategoria"   : val.idcategoria,
+                                                "idcombinacion" : idselecciongr,
+                                                "nombrecombinacion" : nombrecombinacion,
+                                                "idpaciente"    : actualpaciente,
+                                                "idplato"       : idplatos,
+                                                "iddia"         : dia
+
+
+                                            });
+
+                                        });
+
+
+
+                                    }
+
+                                    if (val.idcategoria == 4 ) {
+                                        //div verduras
+                                        $("#c1").append('<li style="padding-top: 0px; padding-bottom: 0px;"><img class="img-fluid imgres" id= img'+j+' style="border-radius: 150px; height: 50px; width: 50px;" src=""></li>');
+                                        $("img#img"+j).attr('src', 'data:image/jpeg;base64,'+val.imgb64+'');
+                                        tl.from("#img"+j, 1.3, { x: "+=850px", ease: Bounce.easeOut })
+                                            .from("#img"+j, 1, {opacity:0}, "-=1.3" );
+                                    }else
+                                    if (val.idcategoria == 3){
+
+                                        //div de las verduras
+
+                                        $("#c2").append('<li style="padding-top: 0px; padding-bottom: 0px;"><img class="img-fluid imgres" id= img'+j+' style="border-radius: 150px; height: 50px; width: 50px;" src=""></li>');
+                                        $("img#img"+j).attr('src', 'data:image/jpeg;base64,'+val.imgb64+'');
+                                        tl.from("#img"+j, 1.3, { x: "+=850px", ease: Bounce.easeOut })
+                                            .from("#img"+j, 1, {opacity:0}, "-=1.7" );
+                                    }else
+                                    if (val.idcategoria == 5 || val.idcategoria == 1){
+                                        //div para cereales
+
+                                        $("#c3").append('<li style="padding-top: 0px; padding-bottom: 0px;"><img class="img-fluid imgres" id= img'+j+' style="border-radius: 150px; height: 50px; width: 50px;" src=""></li>');
+                                        $("img#img"+j).attr('src', 'data:image/jpeg;base64,'+val.imgb64+'');
+                                        tl.from("#img"+j, 1.3, { x: "+=850px", ease: Bounce.easeOut })
+                                            .from("#img"+j, 1, {opacity:0}, "-=1.3" );
                                     }
                                     else
-                                        if (val.idcategoria == 1){
+                                    if (val.idcategoria == 2){
 
-                                            $("#imgc4").attr('src', cargar);
-                                        }
-                                        else
-                                            if (val.idcategoria > 5){
+                                        //div para lacteos
 
-                                                $("#imgc4").attr('src', cargar);
-                                            }
-                });
+                                        $("#c5").append('<li style="padding-top: 0px; padding-bottom: 0px;"><img class="img-fluid imgres" id= img'+j+' style="border-radius: 150px; height: 50px; width: 50px;" src= ""></li>');
+                                        $("img#img"+j).attr('src', 'data:image/jpeg;base64,'+val.imgb64+'');
+                                        tl.from("#img"+j, 1.3, { x: "+=850px", ease: Bounce.easeOut })
+                                            .from("#img"+j, 1, {opacity:0}, "-=1.3" );
+                                    }
+                                    else
+                                    if (val.idcategoria >= 6){
 
-                //tomamon el ultimo elemento del array res
-                var b = res[res.length-1];
+                                        //divproteinas
+
+                                        $("#c4").append('<li style="padding-top: 0px; padding-bottom: 0px;"><img class="img-fluid imgres" id= img'+j+' style="border-radius: 150px; height: 50px; width: 50px;" src= ""></li>');
+                                        $("img#img"+j).attr('src', 'data:image/jpeg;base64,'+val.imgb64+'');
+                                        tl.from("#img"+j, 1.3, { x: "+=850px", ease: Bounce.easeOut })
+                                            .from("#img"+j, 1, {opacity:0}, "-=1.3" );
+                                    }
+
+                                });
+
+                                //tomamos el ultimo elemento del array res
+                                var b = res[res.length-1];
 
 
-                $("#lblnombreceta").text(b.nombrereceta);
-                $("#lblpreparacionreceta").text(b.preparacion);
-                $("#lblcalorias").text("Total de calorias en esta receta: "+b.calorias);
+                                $("#lblnombreceta").text(b.nombrereceta);
+                                $("#lblpreparacionreceta").text(b.preparacion);
+                                $("#lblgrasas").text("Total de grasas en esta receta: "+b.grasas);
+                                $("#lblcarbohidratos").text("Total de carbohidratos en esta receta: "+b.carbohidratos);
+                                $("#lblproteinas").text("Total de proteinas en esta receta: "+b.proteinas);
 
 
-            }else{
+                            }else{
 
-                    //swal("Ops", "Este plato no contiene alimentos", "error")
+                                //swal("Ops", "Este plato no contiene alimentos", "error")
+                            }
+                        }
+                    });
+
                 }
-            }
-        });
+                swal("Receta agregada", "Su receta fue agregada correctamente", "success");
+            });
+
+
+
 
         });
 
-    // $("#tabcategorias").click(function () {
-    //
-    //
-    //     $.post(baseurl + 'paciente/categorias_json', function (data) {
-    //
-    //         var result = JSON.parse(data);
-    //
-    //         console.log(result);
-    //
-    //         $.each(result, function (i, val) {
-    //
-    //             $("#espaciocategorias").append('<li data-toggle="modal" data-target="#modalalimentos" data-id=' + val.IDCategoria + ' class="badge badge-pill purple btn btn-bg" id=categoria >' + val.Nombre + '</li>').hover(function () {
-    //
-    //                 $(this).css("cursor", "pointer");
-    //             }, function () {
-    //                 $(this).css("cursor", "hand");
-    //
-    //             });
-    //
-    //
-    //         });
-    //
-    //         //$("#tabcategorias").addClass("disabled");
-    //
-    //     });
-    // });
 
 
     $(document).on("click", "#categoria", function () {
 
 
-
-            var dato = $(this).data("id");
+        var dato = $(this).data("id");
 
         idcategoria = dato;
 
@@ -1671,17 +1098,33 @@ $(document).ready(function(){
             success: function (res) {
                 console.log(res);
                 if (res) {
-
+                    console.log(res);
 
                     $.each(res, function (j, val) {
 
-                        $("#vienenalimentos").append('<li data-id=' + val.IDAlimento + ' data-imagen=' + val.img + ' data-categoria=' + val.IDCategoria + ' data-calorias=' + val.Calorias + ' id=alimento class="list-group-item">' + val.Nombre + ', ' + val.Calorias + '</li>').hover(function () {
+
+                        $("#vienenalimentos").append('<li ' +
+                            'data-id=' + val.IDAlimento + ' ' +
+                            'data-imgb64=' + val.imgb64 + ' ' +
+                            'data-imagen=' + val.img + ' ' +
+                            'data-categoria=' + val.IDCategoria + ' ' +
+                            'data-proteinas=' + val.proteinas + ' ' +
+                            'data-carbohidratos=' + val.Carbohidratos + '  ' +
+                            'data-grasas=' + val.Grasas + ' ' +
+                            'id=alimento ' +
+                            'class="list-group-item">' + val.Nombre + ', G' + val.Grasas + ', C' + val.Carbohidratos + ', P' + val.proteinas + '' +
+                            '<img style="border-radius: 150px; height: 60px; width: 60px; margin-left: 10px;" id=img'+j+' class="b64 img-fluid"> ' +
+                            '</li>').hover(function () {
 
                             $(this).css("cursor", "pointer");
                         }, function () {
                             $(this).css("cursor", "hand");
 
                         });
+
+                        //creamos img con id dinstintos, y solo le mandamos el valor en base64 sin decodificarlo
+
+                        $("img#img"+j).attr('src', 'data:image/jpeg;base64,'+val.imgb64+'');
                     });
 
                 }
@@ -1690,6 +1133,7 @@ $(document).ready(function(){
 
 
     });
+
 
     //si se cierra la ventana modal elimina los alimentos mostrados anteriormente
     $(document).on("click", "#cerrarmodalalimentos", function () {

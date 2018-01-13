@@ -131,12 +131,12 @@ if (!defined('K_TCPDF_EXTERNAL_CONFIG')) {
 	/**
 	 * header title
 	 */
-	define ('PDF_HEADER_TITLE', 'Nutricion');
+	define ('PDF_HEADER_TITLE', 'Totally Health');
 
 	/**
 	 * header description string
 	 */
-	define ('PDF_HEADER_STRING', "Clininca Nutricionista");
+	define ('PDF_HEADER_STRING', "Tel: 79427418 - 41053339");
 
 	/**
 	 * image logo
